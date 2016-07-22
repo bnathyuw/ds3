@@ -8,22 +8,23 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
     public class HealthCheckerShould
     {
         private HealthChecker _healthChecker;
-        private const int ExpectedDatabaseStatus = 43;
+        private Health _health;
+        private DatabaseConnectionChecker _databaseConnectionChecker;
 
         [SetUp]
         public void SetUp()
         {
-            var databaseConnectionChecker = Substitute.For<DatabaseConnectionChecker>();
-            databaseConnectionChecker.Check().Returns(ExpectedDatabaseStatus);
-            _healthChecker = new HealthChecker(databaseConnectionChecker);
+            _databaseConnectionChecker = Substitute.For<DatabaseConnectionChecker>();
+            _health = Substitute.For<Health>();
+            _healthChecker = new HealthChecker(_databaseConnectionChecker);
         }
 
         [Test]
-        public void Return_health_with_database_status()
+        public void Writes_database_status_to_health()
         {
-            var health = _healthChecker.CheckHealth();
+            _healthChecker.WriteHealthTo(_health);
 
-            Assert.That(health.DatabaseStatus, Is.EqualTo(ExpectedDatabaseStatus));
+            _databaseConnectionChecker.Received().WriteDatabaseStatusTo(_health);
         }
     }
 }

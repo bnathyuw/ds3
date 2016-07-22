@@ -7,9 +7,9 @@ namespace DeliverySolutions.Web
     {
         private const string ConnectionString = "Server=(local)\\SQL2014;Database=DeliverySolutions;User Id=deliverysolutions;Password=deliverysolutions; ";
 
-        public virtual int Check()
+        public virtual void WriteDatabaseStatusTo(Health healthBuilder)
         {
-            using (var sqlConnection =new SqlConnection(ConnectionString))
+            using (var sqlConnection = new SqlConnection(ConnectionString))
             {
                 sqlConnection.Open();
                 using (var sqlCommand = new SqlCommand())
@@ -18,7 +18,8 @@ namespace DeliverySolutions.Web
                     sqlCommand.Connection = sqlConnection;
                     sqlCommand.CommandText = "dbo.HealthCheck";
 
-                    return (int)sqlCommand.ExecuteScalar();
+                    var databaseStatus = (int)sqlCommand.ExecuteScalar();
+                    healthBuilder.WithDatabaseStatus(databaseStatus);
                 }
             }
         }

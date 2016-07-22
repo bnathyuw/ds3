@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 
 namespace DeliverySolutions.Web.Integration.Tests.Infra
 {
@@ -6,17 +7,21 @@ namespace DeliverySolutions.Web.Integration.Tests.Infra
     public class DatabaseConnectionCheckerShould
     {
         private DatabaseConnectionChecker _databaseConnectionChecker;
+        private Health _health;
 
         [SetUp]
         public void SetUp()
         {
             _databaseConnectionChecker = new DatabaseConnectionChecker();
+            _health = Substitute.For<Health>();
         }
 
         [Test]
-        public void Connect_to_database()
+        public void Write_connection_status_to_health()
         {
-            Assert.That(_databaseConnectionChecker.Check(), Is.EqualTo(1));
+            _databaseConnectionChecker.WriteDatabaseStatusTo(_health);
+
+            _health.Received().WithDatabaseStatus(1);
         }
     }
 }

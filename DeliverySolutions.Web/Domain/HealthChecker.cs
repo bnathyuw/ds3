@@ -9,10 +9,9 @@
             _databaseConnectionChecker = databaseConnectionChecker;
         }
 
-        public virtual Health CheckHealth()
+        public virtual void WriteHealthTo(Health healthBuilder)
         {
-            var databaseStatus = _databaseConnectionChecker.Check();
-            return new Health(databaseStatus);
+            _databaseConnectionChecker.WriteDatabaseStatusTo(healthBuilder);
         }
     }
 }
