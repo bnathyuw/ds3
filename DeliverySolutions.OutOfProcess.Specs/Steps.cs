@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using NUnit.Framework;
@@ -12,6 +13,7 @@ namespace DeliverySolutions.OutOfProcess.Specs
         private readonly HttpClient _httpClient;
         private string _healthcheckUrl = "http://localhost:58459/v1/healthcheck";
         private HttpResponseMessage _response;
+        private string _body;
 
         public CheckEndpointsAreRespondingSteps()
         {
@@ -21,12 +23,22 @@ namespace DeliverySolutions.OutOfProcess.Specs
         [When(@"I hit the healthcheck endpoint")]
         public void WhenIHitTheHealthcheckEndpoint()
         {
-            GetHealthcheck().Wait();
+            Get(_healthcheckUrl).Wait();
         }
 
-        private async Task GetHealthcheck()
+        private async Task Get(string url)
         {
-            _response = await _httpClient.GetAsync(_healthcheckUrl);
+            Console.WriteLine($@">>>>>
+GET {url} HTTP/1.1
+{_httpClient.DefaultRequestHeaders}
+>>>>>");
+            _response = await _httpClient.GetAsync(url);
+            _body = await _response.Content.ReadAsStringAsync();
+            Console.WriteLine($@"<<<<<
+HTTP {(int)_response.StatusCode} {_response.StatusCode}
+{_response.Headers}
+{_body}
+<<<<<");
         }
 
         [Then(@"I should get a healthcheck response")]

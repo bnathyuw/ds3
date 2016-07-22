@@ -116,6 +116,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\HealthcheckController.cs" />
+    <Compile Include="Domain\HealthChecker.cs" />
+    <Compile Include="Infra\DependencyResolver.cs" />
     <Compile Include="Infra\WebApiConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
