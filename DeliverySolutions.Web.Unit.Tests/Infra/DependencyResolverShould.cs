@@ -9,23 +9,26 @@ namespace DeliverySolutions.Web.Unit.Tests.Infra
     public class DependencyResolverShould
     {
         private readonly Type _unknownType = typeof(int);
+        private DependencyResolver _dependencyResolver;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _dependencyResolver = new DependencyResolver();
+        }
 
         [Test]
         public void Resolve_healthcheck_controller()
         {
-            var dependencyResolver = new DependencyResolver();
-
-            Assert.That(dependencyResolver.GetService(typeof(HealthcheckController)), Is.TypeOf<HealthcheckController>());
-            Assert.That(dependencyResolver.GetServices(typeof(HealthcheckController)).First(), Is.TypeOf<HealthcheckController>());
+            Assert.That(_dependencyResolver.GetService(typeof(HealthcheckController)), Is.TypeOf<HealthcheckController>());
+            Assert.That(_dependencyResolver.GetServices(typeof(HealthcheckController)).First(), Is.TypeOf<HealthcheckController>());
         }
 
         [Test]
         public void Not_resolve_unknown_type()
         {
-            var dependencyResolver = new DependencyResolver();
-
-            Assert.That(dependencyResolver.GetService(_unknownType), Is.Null);
-            Assert.That(dependencyResolver.GetServices(_unknownType), Is.Empty);
+            Assert.That(_dependencyResolver.GetService(_unknownType), Is.Null);
+            Assert.That(_dependencyResolver.GetServices(_unknownType), Is.Empty);
         }
     }
 }

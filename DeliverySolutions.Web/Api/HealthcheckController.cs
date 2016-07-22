@@ -12,9 +12,9 @@ namespace DeliverySolutions.Web.Api
             _healthChecker = healthChecker;
         }
 
-        public void Get()
+        public IHttpActionResult Get()
         {
-            _healthChecker.CheckHealth();
+            return Ok(_healthChecker.CheckHealth());
         }
     }
 }

@@ -21,16 +21,21 @@ namespace DeliverySolutions.Web
         {
             if (serviceType == typeof(HealthcheckController))
             {
-                return new HealthcheckController(new HealthChecker());
+                return BuildHealthcheckController();
             }
             return null;
+        }
+
+        private static HealthcheckController BuildHealthcheckController()
+        {
+            return new HealthcheckController(new HealthChecker(new DatabaseConnectionChecker()));
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
             if (serviceType == typeof(HealthcheckController))
             {
-                yield return new HealthcheckController(new HealthChecker());
+                yield return BuildHealthcheckController();
             }
         }
     }

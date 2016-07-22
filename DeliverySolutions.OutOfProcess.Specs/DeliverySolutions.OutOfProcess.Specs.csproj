@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api.cs" />
     <Compile Include="AsADeliverySolutionsDeveloper\CheckEndpointsAreResponding.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
