@@ -11,6 +11,8 @@ namespace DeliverySolutions.Web.Unit.Tests.Api
     {
         private HealthcheckController _healthcheckController;
         private Health _expectedHealth;
+        private HealthcheckResponseMapper _healthcheckResponseMapper;
+        private HealthcheckResponse _expectedHealthcheckResponse;
 
         [SetUp]
         public void SetUp()
@@ -18,15 +20,26 @@ namespace DeliverySolutions.Web.Unit.Tests.Api
             var healthChecker = Substitute.For<HealthChecker>((DatabaseConnectionChecker)null);
             _expectedHealth = new Health(43);
             healthChecker.CheckHealth().Returns(_expectedHealth);
-            _healthcheckController = new HealthcheckController(healthChecker);
+            _healthcheckResponseMapper = Substitute.For<HealthcheckResponseMapper>();
+            _expectedHealthcheckResponse = new HealthcheckResponse();
+            _healthcheckResponseMapper.MapResponse(_expectedHealth).Returns(_expectedHealthcheckResponse);
+            _healthcheckController = new HealthcheckController(healthChecker, _healthcheckResponseMapper);
+        }
+
+        [Test]
+        public void Maps_response_from_health_checker()
+        {
+            _healthcheckController.Get();
+
+            _healthcheckResponseMapper.Received().MapResponse(_expectedHealth);
         }
 
         [Test]
         public void Responds_ok_with_health_of_application()
         {
-            var response = (OkNegotiatedContentResult<Health>)_healthcheckController.Get();
+            var response = (OkNegotiatedContentResult<HealthcheckResponse>)_healthcheckController.Get();
 
-            Assert.That(response.Content, Is.EqualTo(_expectedHealth));
+            Assert.That(response.Content, Is.EqualTo(_expectedHealthcheckResponse));
         }
     }
 }

@@ -28,7 +28,7 @@ namespace DeliverySolutions.Web
 
         private static HealthcheckController BuildHealthcheckController()
         {
-            return new HealthcheckController(new HealthChecker(new DatabaseConnectionChecker()));
+            return new HealthcheckController(new HealthChecker(new DatabaseConnectionChecker()), new HealthcheckResponseMapper());
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
