@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using DeliverySolutions.Web.Api;
 
 namespace DeliverySolutions.Web
 {
@@ -20,7 +19,7 @@ namespace DeliverySolutions.Web
                     sqlCommand.CommandText = "dbo.HealthCheck";
 
                     var databaseStatus = (int)sqlCommand.ExecuteScalar();
-                    healthBuilder.AddCheck(new Check("Can connect to database", $"{databaseStatus}"));
+                    healthBuilder.AddCheck("Can connect to database", $"{databaseStatus}");
                 }
             }
         }

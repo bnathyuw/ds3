@@ -15,7 +15,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Api
         [SetUp]
         public void SetUp()
         {
-            _healthChecker = Substitute.For<HealthChecker>((DatabaseConnectionChecker)null);
+            _healthChecker = Substitute.For<HealthChecker>(null, null);
             _healthResponseBuilder = Substitute.For<HealthResponseBuilder>();
             _healthcheckController = new HealthcheckController(_healthChecker, _healthResponseBuilder);
         }

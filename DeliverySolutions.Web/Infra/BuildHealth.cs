@@ -1,9 +1,8 @@
-﻿using DeliverySolutions.Web.Api;
-
-namespace DeliverySolutions.Web
+﻿namespace DeliverySolutions.Web
 {
     public interface BuildHealth
     {
-        void AddCheck(Check check);
+        void AddCheck(string name, string value);
+        void WithServiceVersion(string serviceVersion);
     }
 }

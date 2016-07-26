@@ -8,23 +8,33 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
     public class HealthCheckerShould
     {
         private HealthChecker _healthChecker;
-        private BuildHealth _health;
+        private BuildHealth _healthBuilder;
         private DatabaseConnectionChecker _databaseConnectionChecker;
+        private AssemblyVersioner _assemblyVersioner;
 
         [SetUp]
         public void SetUp()
         {
             _databaseConnectionChecker = Substitute.For<DatabaseConnectionChecker>();
-            _health = Substitute.For<BuildHealth>();
-            _healthChecker = new HealthChecker(_databaseConnectionChecker);
+            _healthBuilder = Substitute.For<BuildHealth>();
+            _assemblyVersioner = Substitute.For<AssemblyVersioner>();
+            _healthChecker = new HealthChecker(_databaseConnectionChecker, _assemblyVersioner);
         }
 
         [Test]
-        public void Writes_database_status_to_health()
+        public void Pass_the_assembly_version_to_health()
         {
-            _healthChecker.WriteHealthTo(_health);
+            _healthChecker.WriteHealthTo(_healthBuilder);
 
-            _databaseConnectionChecker.Received().WriteDatabaseStatusTo(_health);
+            _assemblyVersioner.Received().WriteVersionTo(_healthBuilder);
+        }
+
+        [Test]
+        public void Write_database_status_to_health()
+        {
+            _healthChecker.WriteHealthTo(_healthBuilder);
+
+            _databaseConnectionChecker.Received().WriteDatabaseStatusTo(_healthBuilder);
         }
     }
 }

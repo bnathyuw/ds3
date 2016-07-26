@@ -121,6 +121,7 @@
     <Compile Include="Api\HealthcheckController.cs" />
     <Compile Include="Api\HealthResponseBuilder.cs" />
     <Compile Include="Domain\HealthChecker.cs" />
+    <Compile Include="Infra\AssemblyVersioner.cs" />
     <Compile Include="Infra\DatabaseConnectionChecker.cs" />
     <Compile Include="Infra\BuildHealth.cs" />
     <Compile Include="Infra\DependencyResolver.cs" />

@@ -1,5 +1,4 @@
-﻿using DeliverySolutions.Web.Api;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
 
 namespace DeliverySolutions.Web.Integration.Tests.Infra
@@ -22,7 +21,7 @@ namespace DeliverySolutions.Web.Integration.Tests.Infra
         {
             _databaseConnectionChecker.WriteDatabaseStatusTo(_health);
 
-            _health.Received().AddCheck(new Check("Can connect to database", "1"));
+            _health.Received().AddCheck("Can connect to database", "1");
         }
     }
 }

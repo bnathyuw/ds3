@@ -14,11 +14,17 @@ namespace DeliverySolutions.Web.InProcess.Specs
         [When(@"I hit the healthcheck endpoint")]
         public void WhenIHitTheHealthcheckEndpoint()
         {
-            var healthcheckController = new HealthcheckController(new HealthChecker(new DatabaseConnectionChecker()), new HealthResponseBuilder());
+            var healthcheckController = new HealthcheckController(new HealthChecker(new DatabaseConnectionChecker(), new AssemblyVersioner()), new HealthResponseBuilder());
             var response = (OkNegotiatedContentResult<Health>)healthcheckController.Get();
             _content = response.Content;
         }
-        
+
+        [Then(@"I should see the assembly version of the service")]
+        public void ThenIShouldSeeTheAssemblyVersionOfTheService()
+        {
+            Assert.That(_content.ServiceVersion, Does.Match("\\d+\\.\\d+\\.\\d+\\.\\d+"));
+        }
+
         [Then(@"I should see the database connection status")]
         public void ThenIShouldSeeTheDatabaseConnectionStatus()
         {
