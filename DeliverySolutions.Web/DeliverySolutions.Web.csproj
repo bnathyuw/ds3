@@ -116,11 +116,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Check.cs" />
+    <Compile Include="Api\Health.cs" />
     <Compile Include="Api\HealthcheckController.cs" />
     <Compile Include="Api\HealthResponseBuilder.cs" />
     <Compile Include="Domain\HealthChecker.cs" />
     <Compile Include="Infra\DatabaseConnectionChecker.cs" />
-    <Compile Include="Infra\Health.cs" />
+    <Compile Include="Infra\BuildHealth.cs" />
     <Compile Include="Infra\DependencyResolver.cs" />
     <Compile Include="Infra\WebApiConfig.cs" />
     <Compile Include="Global.asax.cs">

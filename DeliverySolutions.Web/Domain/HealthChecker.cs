@@ -9,7 +9,7 @@
             _databaseConnectionChecker = databaseConnectionChecker;
         }
 
-        public virtual void WriteHealthTo(Health healthBuilder)
+        public virtual void WriteHealthTo(BuildHealth healthBuilder)
         {
             _databaseConnectionChecker.WriteDatabaseStatusTo(healthBuilder);
         }

@@ -8,14 +8,14 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
     public class HealthCheckerShould
     {
         private HealthChecker _healthChecker;
-        private Health _health;
+        private BuildHealth _health;
         private DatabaseConnectionChecker _databaseConnectionChecker;
 
         [SetUp]
         public void SetUp()
         {
             _databaseConnectionChecker = Substitute.For<DatabaseConnectionChecker>();
-            _health = Substitute.For<Health>();
+            _health = Substitute.For<BuildHealth>();
             _healthChecker = new HealthChecker(_databaseConnectionChecker);
         }
 

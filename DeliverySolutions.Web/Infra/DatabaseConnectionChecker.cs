@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using DeliverySolutions.Web.Api;
 
 namespace DeliverySolutions.Web
 {
@@ -7,7 +8,7 @@ namespace DeliverySolutions.Web
     {
         private const string ConnectionString = "Server=(local)\\SQL2014;Database=DeliverySolutions;User Id=deliverysolutions;Password=deliverysolutions; ";
 
-        public virtual void WriteDatabaseStatusTo(Health healthBuilder)
+        public virtual void WriteDatabaseStatusTo(BuildHealth healthBuilder)
         {
             using (var sqlConnection = new SqlConnection(ConnectionString))
             {
@@ -19,7 +20,7 @@ namespace DeliverySolutions.Web
                     sqlCommand.CommandText = "dbo.HealthCheck";
 
                     var databaseStatus = (int)sqlCommand.ExecuteScalar();
-                    healthBuilder.WithDatabaseStatus(databaseStatus);
+                    healthBuilder.AddCheck(new Check("Can connect to database", $"{databaseStatus}"));
                 }
             }
         }

@@ -1,20 +1,19 @@
-﻿namespace DeliverySolutions.Web.Api
-{
-    public class HealthResponseBuilder : Health
-    {
-        private int _databaseStatus;
+﻿using System.Collections.Generic;
 
-        public virtual void WithDatabaseStatus(int databaseStatus)
+namespace DeliverySolutions.Web.Api
+{
+    public class HealthResponseBuilder : BuildHealth
+    {
+        private readonly List<Check> _checks = new List<Check>();
+
+        public void AddCheck(Check check)
         {
-            _databaseStatus = databaseStatus;
+            _checks.Add(check);
         }
 
-        public virtual object Build()
+        public virtual Health Build()
         {
-            return new
-            {
-                DatabaseStatus = _databaseStatus
-            };
+            return new Health(_checks);
         }
     }
 }

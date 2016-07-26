@@ -3,7 +3,6 @@
 	As a developer of the Delivery solutions service
 	I want to check that the endpoints respond
 
-@InProgress
 Scenario: Check healthcheck endpoint
 	When I hit the healthcheck endpoint
 	Then I should get a healthcheck response

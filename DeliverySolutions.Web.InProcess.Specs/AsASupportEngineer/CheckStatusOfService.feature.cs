@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace DeliverySolutions.OutOfProcess.Specs.AsADeliverySolutionsDeveloper
+namespace DeliverySolutions.Web.InProcess.Specs.AsASupportEngineer
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,21 @@ namespace DeliverySolutions.OutOfProcess.Specs.AsADeliverySolutionsDeveloper
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Check Endpoints Are Responding")]
-    public partial class CheckEndpointsAreRespondingFeature
+    [NUnit.Framework.DescriptionAttribute("CheckStatusOfService")]
+    public partial class CheckStatusOfServiceFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CheckEndpointsAreResponding.feature"
+#line 1 "CheckStatusOfService.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Check Endpoints Are Responding", "\tIn order to have confidence that the application works as expected\r\n\tAs a develo" +
-                    "per of the Delivery solutions service\r\n\tI want to check that the endpoints respo" +
-                    "nd", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CheckStatusOfService", "\tIn order to troubleshoot problems with the service\r\n\tAs a support engineer\r\n\tI w" +
+                    "ant to be able to see the status of the service and its dependencies", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -66,16 +65,16 @@ namespace DeliverySolutions.OutOfProcess.Specs.AsADeliverySolutionsDeveloper
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Check healthcheck endpoint")]
-        public virtual void CheckHealthcheckEndpoint()
+        [NUnit.Framework.DescriptionAttribute("Check database connection status")]
+        public virtual void CheckDatabaseConnectionStatus()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check healthcheck endpoint", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check database connection status", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.When("I hit the healthcheck endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("I should get a healthcheck response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should see the database connection status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
