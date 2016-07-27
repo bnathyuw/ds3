@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using DeliverySolutions.Web.Domain;
+using DeliverySolutions.Web.Infra;
 
 namespace DeliverySolutions.Web.Api
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DeliverySolutions.Web.Api;
+using DeliverySolutions.Web.Infra;
 using NUnit.Framework;
 
 namespace DeliverySolutions.Web.Unit.Tests.Infra

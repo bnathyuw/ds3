@@ -1,4 +1,6 @@
-﻿namespace DeliverySolutions.Web.Domain
+﻿using DeliverySolutions.Web.Infra;
+
+namespace DeliverySolutions.Web.Domain
 {
     public class HealthChecker
     {

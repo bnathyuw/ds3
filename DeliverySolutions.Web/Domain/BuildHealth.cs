@@ -1,4 +1,4 @@
-﻿namespace DeliverySolutions.Web
+﻿namespace DeliverySolutions.Web.Domain
 {
     public interface BuildHealth
     {

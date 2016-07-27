@@ -1,4 +1,5 @@
 ﻿using DeliverySolutions.Web.Domain;
+using DeliverySolutions.Web.Infra;
 using NSubstitute;
 using NUnit.Framework;
 

@@ -1,4 +1,6 @@
-﻿using NSubstitute;
+﻿using DeliverySolutions.Web.Domain;
+using DeliverySolutions.Web.Infra;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace DeliverySolutions.Web.Integration.Tests.Infra

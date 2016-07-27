@@ -123,7 +123,7 @@
     <Compile Include="Domain\HealthChecker.cs" />
     <Compile Include="Infra\AssemblyVersioner.cs" />
     <Compile Include="Infra\DatabaseConnectionChecker.cs" />
-    <Compile Include="Infra\BuildHealth.cs" />
+    <Compile Include="Domain\BuildHealth.cs" />
     <Compile Include="Infra\DependencyResolver.cs" />
     <Compile Include="Infra\WebApiConfig.cs" />
     <Compile Include="Global.asax.cs">

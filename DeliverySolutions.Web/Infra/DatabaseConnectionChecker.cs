@@ -1,7 +1,8 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using DeliverySolutions.Web.Domain;
 
-namespace DeliverySolutions.Web
+namespace DeliverySolutions.Web.Infra
 {
     public class DatabaseConnectionChecker
     {

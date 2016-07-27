@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using DeliverySolutions.Web.Infra;
 
 namespace DeliverySolutions.Web
 {

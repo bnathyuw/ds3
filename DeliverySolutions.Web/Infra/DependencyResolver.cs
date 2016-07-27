@@ -4,7 +4,7 @@ using System.Web.Http.Dependencies;
 using DeliverySolutions.Web.Api;
 using DeliverySolutions.Web.Domain;
 
-namespace DeliverySolutions.Web
+namespace DeliverySolutions.Web.Infra
 {
     public class DependencyResolver: IDependencyResolver
     {

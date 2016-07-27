@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
+using DeliverySolutions.Web.Domain;
 
-namespace DeliverySolutions.Web
+namespace DeliverySolutions.Web.Infra
 {
     public class AssemblyVersioner
     {

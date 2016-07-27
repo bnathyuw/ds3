@@ -1,6 +1,7 @@
 ﻿using System.Web.Http.Results;
 using DeliverySolutions.Web.Api;
 using DeliverySolutions.Web.Domain;
+using DeliverySolutions.Web.Infra;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 
