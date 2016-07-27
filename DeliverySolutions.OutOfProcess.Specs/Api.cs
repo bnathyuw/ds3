@@ -1,7 +1,7 @@
-using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using NUnit.Framework;
 
 namespace DeliverySolutions.OutOfProcess.Specs
@@ -10,7 +10,6 @@ namespace DeliverySolutions.OutOfProcess.Specs
     {
         private readonly HttpClient _httpClient;
         private HttpResponseMessage _response;
-        private string _body;
 
         public Api()
         {
@@ -19,25 +18,30 @@ namespace DeliverySolutions.OutOfProcess.Specs
 
         public async Task Get(string url)
         {
-            Console.WriteLine($@">>>>>
-GET {url} HTTP/1.1
-{_httpClient.DefaultRequestHeaders}
->>>>>");
+            Logger.LogRequest(url, _httpClient);
 
             _response = await _httpClient.GetAsync(url);
 
-            _body = await _response.Content.ReadAsStringAsync();
-
-            Console.WriteLine($@"<<<<<
-HTTP {(int)_response.StatusCode} {_response.StatusCode}
-{_response.Headers}
-{_body}
-<<<<<");
+            await Logger.LogResponse(_response);
         }
 
-        public async Task HealthcheckResponseShouldBeOk()
+        public void ResponseShouldGiveHttpOk()
         {
             Assert.That(_response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+        }
+
+        public async Task ResponseShouldConformToHealthcheckContract()
+        {
+            var body = await _response.Content.ReadAsStringAsync();
+            var healthcheckResponse = Json.Decode(body);
+
+            Assert.That(healthcheckResponse.ServiceVersion, Does.Match("\\d+\\.\\d+\\.\\d+\\.\\d+"));
+            Assert.That(healthcheckResponse.Checks, Is.Not.Empty);
+            foreach (var check in healthcheckResponse.Checks)
+            {
+                Assert.That(check.Name, Does.Match(".*"));
+                Assert.That(check.Value, Does.Match(".*"));
+            }
         }
     }
 }

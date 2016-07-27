@@ -5,7 +5,7 @@ namespace DeliverySolutions.OutOfProcess.Specs
     [Binding]
     public class CheckEndpointsAreRespondingSteps
     {
-        private string _healthcheckUrl = "http://localhost:58459/v1/healthcheck";
+        private const string HealthcheckUrl = "http://localhost:58459/v1/healthcheck";
         private readonly Api _api;
 
         public CheckEndpointsAreRespondingSteps(Api api)
@@ -16,13 +16,14 @@ namespace DeliverySolutions.OutOfProcess.Specs
         [When(@"I hit the healthcheck endpoint")]
         public void WhenIHitTheHealthcheckEndpoint()
         {
-            _api.Get(_healthcheckUrl).Wait();
+            _api.Get(HealthcheckUrl).Wait();
         }
 
         [Then(@"I should get a healthcheck response")]
         public void ThenIShouldGetAHealthcheckResponse()
         {
-            _api.HealthcheckResponseShouldBeOk().Wait();
+            _api.ResponseShouldGiveHttpOk();
+            _api.ResponseShouldConformToHealthcheckContract().Wait();
         }
     }
 }
