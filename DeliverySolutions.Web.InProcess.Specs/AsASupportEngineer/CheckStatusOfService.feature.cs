@@ -64,16 +64,24 @@ namespace DeliverySolutions.Web.InProcess.Specs.AsASupportEngineer
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 6
+#line 7
+ testRunner.When("I hit the healthcheck endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("See assembly version")]
         public virtual void SeeAssemblyVersion()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("See assembly version", ((string[])(null)));
-#line 6
+#line 9
 this.ScenarioSetup(scenarioInfo);
-#line 7
- testRunner.When("I hit the healthcheck endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
+#line 6
+this.FeatureBackground();
+#line 10
  testRunner.Then("I should see the assembly version of the service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -84,11 +92,11 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CheckDatabaseConnectionStatus()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check database connection status", ((string[])(null)));
-#line 10
-this.ScenarioSetup(scenarioInfo);
-#line 11
- testRunner.When("I hit the healthcheck endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 13
  testRunner.Then("I should see the database connection status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
