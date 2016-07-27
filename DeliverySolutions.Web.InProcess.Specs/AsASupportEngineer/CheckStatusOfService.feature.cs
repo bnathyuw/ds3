@@ -101,6 +101,21 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Check overall health")]
+        public virtual void CheckOverallHealth()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check overall health", ((string[])(null)));
+#line 15
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 16
+ testRunner.Then("I should see the overall system health", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

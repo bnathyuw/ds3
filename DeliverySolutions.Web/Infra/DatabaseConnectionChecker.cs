@@ -20,7 +20,7 @@ namespace DeliverySolutions.Web.Infra
                     sqlCommand.CommandText = "dbo.HealthCheck";
 
                     var databaseStatus = (int)sqlCommand.ExecuteScalar();
-                    healthBuilder.AddCheck("Can connect to database", $"{databaseStatus}");
+                    healthBuilder.AddCheck("Can connect to database", databaseStatus == 1);
                 }
             }
         }

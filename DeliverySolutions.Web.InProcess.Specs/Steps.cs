@@ -30,7 +30,14 @@ namespace DeliverySolutions.Web.InProcess.Specs
         [Then(@"I should see the database connection status")]
         public void ThenIShouldSeeTheDatabaseConnectionStatus()
         {
-            Assert.That(_content.Checks, Does.Contain(new Check("Can connect to database", "1")));
+            Assert.That(_content.Checks, Does.Contain(new Check("Can connect to database", true)));
         }
+
+        [Then(@"I should see the overall system health")]
+        public void ThenIShouldSeeTheOverallSystemHealth()
+        {
+            Assert.That(_content.IsHealthy, Is.True);
+        }
+
     }
 }

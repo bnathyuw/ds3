@@ -2,7 +2,7 @@
 {
     public interface BuildHealth
     {
-        void AddCheck(string name, string value);
+        void AddCheck(string name, bool isSuccessful);
         void WithServiceVersion(string serviceVersion);
     }
 }

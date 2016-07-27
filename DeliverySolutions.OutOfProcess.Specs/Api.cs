@@ -40,7 +40,7 @@ namespace DeliverySolutions.OutOfProcess.Specs
             foreach (var check in healthcheckResponse.Checks)
             {
                 Assert.That(check.Name, Does.Match(".*"));
-                Assert.That(check.Value, Does.Match(".*"));
+                Assert.That(check.IsSuccessful, Is.TypeOf<bool>());
             }
         }
     }

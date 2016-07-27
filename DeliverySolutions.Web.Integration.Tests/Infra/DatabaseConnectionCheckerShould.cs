@@ -23,7 +23,7 @@ namespace DeliverySolutions.Web.Integration.Tests.Infra
         {
             _databaseConnectionChecker.WriteDatabaseStatusTo(_health);
 
-            _health.Received().AddCheck("Can connect to database", "1");
+            _health.Received().AddCheck("Can connect to database", true);
         }
     }
 }

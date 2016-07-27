@@ -11,3 +11,6 @@ Scenario: See assembly version
 
 Scenario: Check database connection status
 	Then I should see the database connection status
+
+Scenario: Check overall health
+	Then I should see the overall system health
