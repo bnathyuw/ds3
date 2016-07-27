@@ -10,6 +10,7 @@ namespace DeliverySolutions.Web.InProcess.Specs
     [Binding]
     public class CheckStatusOfServiceSteps
     {
+        private const string AssemblyVersionPattern = "\\d+\\.\\d+\\.\\d+\\.\\d+";
         private Health _content;
 
         [When(@"I hit the healthcheck endpoint")]
@@ -23,7 +24,7 @@ namespace DeliverySolutions.Web.InProcess.Specs
         [Then(@"I should see the assembly version of the service")]
         public void ThenIShouldSeeTheAssemblyVersionOfTheService()
         {
-            Assert.That(_content.ServiceVersion, Does.Match("\\d+\\.\\d+\\.\\d+\\.\\d+"));
+            Assert.That(_content.ServiceVersion, Does.Match(AssemblyVersionPattern));
         }
 
         [Then(@"I should see the database connection status")]
