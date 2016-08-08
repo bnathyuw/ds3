@@ -25,5 +25,14 @@ GET {url} HTTP/1.1
 {httpClient.DefaultRequestHeaders}
 >>>>>");
         }
+
+        public static void LogRequest(string url, string body, HttpClient httpClient)
+        {
+            Console.WriteLine($@">>>>>
+GET {url} HTTP/1.1
+{httpClient.DefaultRequestHeaders}
+{body}
+>>>>>");
+        }
     }
 }

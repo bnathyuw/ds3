@@ -1,7 +1,9 @@
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Helpers;
+using DeliverySolutions.OutOfProcess.Specs.Response;
 using NUnit.Framework;
 
 namespace DeliverySolutions.OutOfProcess.Specs
@@ -42,6 +44,22 @@ namespace DeliverySolutions.OutOfProcess.Specs
                 Assert.That(check.Name, Does.Match(".*"));
                 Assert.That(check.IsSuccessful, Is.TypeOf<bool>());
             }
+        }
+
+        public async Task Post(string url, object content)
+        {
+            var body = Json.Encode(content);
+            Logger.LogRequest(url, body, _httpClient);
+
+            _response = await _httpClient.PostAsync(url, new StringContent(body, Encoding.UTF8, "application/json"));
+
+            await Logger.LogResponse(_response);
+        }
+
+        public async Task ResponseShouldConformToDthContract()
+        {
+            var body = await _response.Content.ReadAsStringAsync();
+            Json.Decode<DthResponse>(body);
         }
     }
 }

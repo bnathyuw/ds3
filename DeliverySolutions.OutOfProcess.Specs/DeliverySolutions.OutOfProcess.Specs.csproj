@@ -67,15 +67,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CheckEndpointsAreResponding.feature</DependentUpon>
     </Compile>
+    <Compile Include="AsADeliverySolutionsDeveloper\ProvideDthSolutions.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProvideDthSolutions.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Request\DeliveryDetails.cs" />
+    <Compile Include="Request\DeliveryDetailsBuilder.cs" />
+    <Compile Include="Request\DthRequest.cs" />
+    <Compile Include="Request\DthRequestBuilder.cs" />
+    <Compile Include="Response\Attribute.cs" />
+    <Compile Include="Response\DeliverySolution.cs" />
+    <Compile Include="Response\DthResponse.cs" />
+    <Compile Include="Request\Item.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps.cs" />
+    <Compile Include="CheckEndpointsAreRespondingSteps.cs" />
+    <Compile Include="Response\Item.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="AsADeliverySolutionsDeveloper\CheckEndpointsAreResponding.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CheckEndpointsAreResponding.feature.cs</LastGenOutput>
+    </None>
+    <None Include="AsADeliverySolutionsDeveloper\ProvideDthSolutions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProvideDthSolutions.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
