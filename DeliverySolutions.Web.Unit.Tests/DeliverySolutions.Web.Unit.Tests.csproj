@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\DeliverToHomeControllerShould.cs" />
     <Compile Include="Api\HealthcheckControllerShould.cs" />
     <Compile Include="Api\HealthResponseBuilderShould.cs" />
     <Compile Include="Domain\HealthCheckerShould.cs" />

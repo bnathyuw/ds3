@@ -26,6 +26,13 @@ namespace DeliverySolutions.Web.Unit.Tests.Infra
         }
 
         [Test]
+        public void Resolve_deliver_to_home_controller()
+        {
+            Assert.That(_dependencyResolver.GetService(typeof(DeliverToHomeController)), Is.TypeOf<DeliverToHomeController>());
+            Assert.That(_dependencyResolver.GetServices(typeof(DeliverToHomeController)).First(), Is.TypeOf<DeliverToHomeController>());
+        }
+
+        [Test]
         public void Not_resolve_unknown_type()
         {
             Assert.That(_dependencyResolver.GetService(_unknownType), Is.Null);

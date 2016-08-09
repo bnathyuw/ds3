@@ -23,7 +23,16 @@ namespace DeliverySolutions.Web.Infra
             {
                 return BuildHealthcheckController();
             }
+            if (serviceType == typeof(DeliverToHomeController))
+            {
+                return DelierToHomeController();
+            }
             return null;
+        }
+
+        private DeliverToHomeController DelierToHomeController()
+        {
+            return new DeliverToHomeController(new DeliverToHomeResponseBuilder());
         }
 
         private static HealthcheckController BuildHealthcheckController()
@@ -36,6 +45,10 @@ namespace DeliverySolutions.Web.Infra
             if (serviceType == typeof(HealthcheckController))
             {
                 yield return BuildHealthcheckController();
+            }
+            if (serviceType == typeof(DeliverToHomeController))
+            {
+                yield return DelierToHomeController();
             }
         }
     }

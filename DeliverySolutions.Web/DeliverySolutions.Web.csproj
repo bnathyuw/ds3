@@ -117,6 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\Check.cs" />
+    <Compile Include="Api\DeliverToHomeController.cs" />
+    <Compile Include="Api\DeliverToHomeResponse.cs" />
+    <Compile Include="Api\DeliverToHomeResponseBuilder.cs" />
     <Compile Include="Api\Health.cs" />
     <Compile Include="Api\HealthcheckController.cs" />
     <Compile Include="Api\HealthResponseBuilder.cs" />
