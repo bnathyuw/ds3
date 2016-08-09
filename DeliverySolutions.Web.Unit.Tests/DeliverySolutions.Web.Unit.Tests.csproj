@@ -61,8 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\DeliverToHomeControllerShould.cs" />
+    <Compile Include="Api\DeliverToHomeRequestBuilder.cs" />
+    <Compile Include="Api\DeliverToHomeResponseBuilderShould.cs" />
     <Compile Include="Api\HealthcheckControllerShould.cs" />
     <Compile Include="Api\HealthResponseBuilderShould.cs" />
+    <Compile Include="Domain\DeliverySolutionFinderShould.cs" />
     <Compile Include="Domain\HealthCheckerShould.cs" />
     <Compile Include="Infra\DependencyResolverShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,7 +1,11 @@
-﻿using System.Web.Http.Results;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http.Results;
 using DeliverySolutions.Web.Api;
+using DeliverySolutions.Web.Domain;
 using NSubstitute;
 using NUnit.Framework;
+using static DeliverySolutions.Web.Unit.Tests.Api.DeliverToHomeRequestBuilder;
 
 namespace DeliverySolutions.Web.Unit.Tests.Api
 {
@@ -11,13 +15,33 @@ namespace DeliverySolutions.Web.Unit.Tests.Api
         private DeliverToHomeResponseBuilder _deliverToHomeResponseBuilder;
         private DeliverToHomeResponse _expectedDeliverToHomeResponse;
         private DeliverToHomeController _deliverToHomeController;
+        private DeliverySolutionFinder _deliverySolutionFinder;
+        private const string AssignmentId = "123";
+        private const int AddressId = 123;
+        private const int VariantId = 234;
+        private const int AnotherVariantId = 345;
 
         [SetUp]
         public void SetUp()
         {
             _deliverToHomeResponseBuilder = Substitute.For<DeliverToHomeResponseBuilder>();
             _expectedDeliverToHomeResponse = new DeliverToHomeResponse();
-            _deliverToHomeController = new DeliverToHomeController(_deliverToHomeResponseBuilder);
+            _deliverySolutionFinder = Substitute.For<DeliverySolutionFinder>((Web.Infra.DeliverySolutions)null);
+            _deliverToHomeController = new DeliverToHomeController(_deliverToHomeResponseBuilder, _deliverySolutionFinder);
+        }
+
+        [Test]
+        public void Find_delivery_solutions()
+        {
+            var deliverToHomeRequest = ADeliverToHomeRequest
+                .WithAssignmentId(AssignmentId)
+                .WithAddressId(AddressId)
+                .AddVariantId(VariantId)
+                .AddVariantId(AnotherVariantId)
+                .Build();
+            _deliverToHomeController.Post(deliverToHomeRequest);
+
+            _deliverySolutionFinder.Received().FindDthSolutions(_deliverToHomeResponseBuilder, AssignmentId, AddressId, Arg.Is((IEnumerable<int> items) => items.SequenceEqual(new[] {VariantId, AnotherVariantId})));
         }
 
         [Test]
@@ -25,7 +49,8 @@ namespace DeliverySolutions.Web.Unit.Tests.Api
         {
             _deliverToHomeResponseBuilder.Build().Returns(_expectedDeliverToHomeResponse);
 
-            var httpActionResult = (OkNegotiatedContentResult<DeliverToHomeResponse>)_deliverToHomeController.Post();
+            var deliverToHomeRequest = ADeliverToHomeRequest.Build();
+            var httpActionResult = (OkNegotiatedContentResult<DeliverToHomeResponse>)_deliverToHomeController.Post(deliverToHomeRequest);
 
             Assert.That(httpActionResult.Content, Is.EqualTo(_expectedDeliverToHomeResponse));
         }

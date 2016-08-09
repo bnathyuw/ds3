@@ -59,7 +59,10 @@ namespace DeliverySolutions.OutOfProcess.Specs
         public async Task ResponseShouldConformToDthContract()
         {
             var body = await _response.Content.ReadAsStringAsync();
-            Json.Decode<DthResponse>(body);
+            var dthResponse = Json.Decode<DthResponse>(body);
+            Assert.That(dthResponse.AssignmentId, Is.Not.Null);
+            Assert.That(dthResponse.DeliveryAddressId, Is.Not.Zero);
+            Assert.That(dthResponse.Items, Is.Not.Empty);
         }
     }
 }

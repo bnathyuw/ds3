@@ -25,14 +25,14 @@ namespace DeliverySolutions.Web.Infra
             }
             if (serviceType == typeof(DeliverToHomeController))
             {
-                return DelierToHomeController();
+                return DeliverToHomeController();
             }
             return null;
         }
 
-        private DeliverToHomeController DelierToHomeController()
+        private static DeliverToHomeController DeliverToHomeController()
         {
-            return new DeliverToHomeController(new DeliverToHomeResponseBuilder());
+            return new DeliverToHomeController(new DeliverToHomeResponseBuilder(), new DeliverySolutionFinder(new DeliverySolutions()));
         }
 
         private static HealthcheckController BuildHealthcheckController()
@@ -48,7 +48,7 @@ namespace DeliverySolutions.Web.Infra
             }
             if (serviceType == typeof(DeliverToHomeController))
             {
-                yield return DelierToHomeController();
+                yield return DeliverToHomeController();
             }
         }
     }
