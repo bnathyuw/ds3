@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http.Results;
+﻿using System.Web.Http.Results;
 using DeliverySolutions.Web.Api;
 using DeliverySolutions.Web.Domain;
 using NSubstitute;
@@ -41,7 +39,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Api
                 .Build();
             _deliverToHomeController.Post(deliverToHomeRequest);
 
-            _deliverySolutionFinder.Received().FindDthSolutions(_deliverToHomeResponseBuilder, AssignmentId, AddressId, Arg.Is((IEnumerable<int> items) => items.SequenceEqual(new[] {VariantId, AnotherVariantId})));
+            _deliverySolutionFinder.Received().FindDthSolutions(_deliverToHomeResponseBuilder, AssignmentId, AddressId);
         }
 
         [Test]

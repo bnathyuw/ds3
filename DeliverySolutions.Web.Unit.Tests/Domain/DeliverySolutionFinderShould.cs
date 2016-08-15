@@ -21,7 +21,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
             _deliverySolutions = Substitute.For<Web.Infra.DeliverySolutions>();
             _deliverySolutionFinder = new DeliverySolutionFinder(_deliverySolutions);
 
-            _deliverySolutionFinder.FindDthSolutions(_deliverToHomeSolutionsBuilder, AssignmentId, DeliveryAddressId, _variantIds);
+            _deliverySolutionFinder.FindDthSolutions(_deliverToHomeSolutionsBuilder, AssignmentId, DeliveryAddressId);
 
         }
 
@@ -40,7 +40,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
         [Test]
         public void Add_solutions()
         {
-            _deliverySolutions.Received().WriteDeliverToHomeSolutionsTo(_deliverToHomeSolutionsBuilder, DeliveryAddressId);
+            _deliverySolutions.Received().WriteDeliverToHomeSolutionsTo(_deliverToHomeSolutionsBuilder);
         }
     }
 }

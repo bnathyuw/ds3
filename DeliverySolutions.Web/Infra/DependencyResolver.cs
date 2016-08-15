@@ -37,7 +37,7 @@ namespace DeliverySolutions.Web.Infra
 
         private static HealthcheckController BuildHealthcheckController()
         {
-            return new HealthcheckController(new HealthChecker(new DatabaseConnectionChecker(), new AssemblyVersioner()), new HealthResponseBuilder());
+            return new HealthcheckController(new HealthChecker(new SqlDatabase(), new ThisApplication()), new HealthResponseBuilder());
         }
 
         public IEnumerable<object> GetServices(Type serviceType)

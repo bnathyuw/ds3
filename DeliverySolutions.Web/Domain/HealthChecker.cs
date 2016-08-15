@@ -1,22 +1,41 @@
-﻿using DeliverySolutions.Web.Infra;
+﻿using DeliverySolutions.Web.Domain.DeliverySolutions.Web.Domain;
 
 namespace DeliverySolutions.Web.Domain
 {
+    public interface BuildHealth
+    {
+        void AddCheck(string name, bool isSuccessful);
+        void WithServiceVersion(string serviceVersion);
+    }
+
+    namespace DeliverySolutions.Web.Domain
+    {
+        public interface Database
+        {
+            void WriteStatusTo(BuildHealth healthBuilder);
+        }
+    }
+
+    public interface Application
+    {
+        void WriteVersionTo(BuildHealth healthBuilder);
+    }
+
     public class HealthChecker
     {
-        private readonly DatabaseConnectionChecker _databaseConnectionChecker;
-        private readonly AssemblyVersioner _assemblyVersioner;
+        private readonly Database _databaseConnectionChecker;
+        private readonly Application _application;
 
-        public HealthChecker(DatabaseConnectionChecker databaseConnectionChecker, AssemblyVersioner assemblyVersioner)
+        public HealthChecker(Database databaseConnectionChecker, Application application)
         {
             _databaseConnectionChecker = databaseConnectionChecker;
-            _assemblyVersioner = assemblyVersioner;
+            _application = application;
         }
 
         public virtual void WriteHealthTo(BuildHealth healthBuilder)
         {
-            _assemblyVersioner.WriteVersionTo(healthBuilder);
-            _databaseConnectionChecker.WriteDatabaseStatusTo(healthBuilder);
+            _application.WriteVersionTo(healthBuilder);
+            _databaseConnectionChecker.WriteStatusTo(healthBuilder);
         }
     }
 }

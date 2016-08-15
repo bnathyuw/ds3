@@ -16,7 +16,7 @@ namespace DeliverySolutions.Web.InProcess.Specs
         [When(@"I hit the healthcheck endpoint")]
         public void WhenIHitTheHealthcheckEndpoint()
         {
-            var healthcheckController = new HealthcheckController(new HealthChecker(new DatabaseConnectionChecker(), new AssemblyVersioner()), new HealthResponseBuilder());
+            var healthcheckController = new HealthcheckController(new HealthChecker(new SqlDatabase(), new ThisApplication()), new HealthResponseBuilder());
             var response = (OkNegotiatedContentResult<Health>)healthcheckController.Get();
             _content = response.Content;
         }

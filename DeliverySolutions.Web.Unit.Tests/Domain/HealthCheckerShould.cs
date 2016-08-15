@@ -1,4 +1,5 @@
 ﻿using DeliverySolutions.Web.Domain;
+using DeliverySolutions.Web.Domain.DeliverySolutions.Web.Domain;
 using DeliverySolutions.Web.Infra;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,16 +11,16 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
     {
         private HealthChecker _healthChecker;
         private BuildHealth _healthBuilder;
-        private DatabaseConnectionChecker _databaseConnectionChecker;
-        private AssemblyVersioner _assemblyVersioner;
+        private Database _databaseConnectionChecker;
+        private Application _thisApplication;
 
         [SetUp]
         public void SetUp()
         {
-            _databaseConnectionChecker = Substitute.For<DatabaseConnectionChecker>();
+            _databaseConnectionChecker = Substitute.For<SqlDatabase>();
             _healthBuilder = Substitute.For<BuildHealth>();
-            _assemblyVersioner = Substitute.For<AssemblyVersioner>();
-            _healthChecker = new HealthChecker(_databaseConnectionChecker, _assemblyVersioner);
+            _thisApplication = Substitute.For<ThisApplication>();
+            _healthChecker = new HealthChecker(_databaseConnectionChecker, _thisApplication);
         }
 
         [Test]
@@ -27,7 +28,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
         {
             _healthChecker.WriteHealthTo(_healthBuilder);
 
-            _assemblyVersioner.Received().WriteVersionTo(_healthBuilder);
+            _thisApplication.Received().WriteVersionTo(_healthBuilder);
         }
 
         [Test]
@@ -35,7 +36,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
         {
             _healthChecker.WriteHealthTo(_healthBuilder);
 
-            _databaseConnectionChecker.Received().WriteDatabaseStatusTo(_healthBuilder);
+            _databaseConnectionChecker.Received().WriteStatusTo(_healthBuilder);
         }
     }
 }

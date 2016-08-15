@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using DeliverySolutions.Web.Domain;
 
 namespace DeliverySolutions.Web.Api
@@ -17,7 +16,7 @@ namespace DeliverySolutions.Web.Api
 
         public IHttpActionResult Post(DeliverToHomeRequest deliverToHomeRequest)
         {
-            _deliverySolutionFinder.FindDthSolutions(_deliverToHomeResponseBuilder, deliverToHomeRequest.AssignmentId, deliverToHomeRequest.DeliveryDetails.AddressId, deliverToHomeRequest.Items.Select(item => item.VariantId));
+            _deliverySolutionFinder.FindDthSolutions(_deliverToHomeResponseBuilder, deliverToHomeRequest.AssignmentId, deliverToHomeRequest.DeliveryDetails.AddressId);
             var deliverToHomeResponse = _deliverToHomeResponseBuilder.Build();
             return Ok(deliverToHomeResponse);
         }

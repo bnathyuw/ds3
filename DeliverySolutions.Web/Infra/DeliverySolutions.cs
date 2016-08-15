@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using DeliverySolutions.Web.Domain;
 
 namespace DeliverySolutions.Web.Infra
 {
@@ -7,7 +8,7 @@ namespace DeliverySolutions.Web.Infra
     {
         private const string ConnectionString = "Server=(local)\\SQL2014;Database=DeliverySolutions;User Id=deliverysolutions;Password=deliverysolutions; ";
 
-        public virtual void WriteDeliverToHomeSolutionsTo(Foo foo, int deliveryAddressId)
+        public virtual void WriteDeliverToHomeSolutionsTo(SolutionCollector solutionCollector)
         {
             using (var sqlConnection = new SqlConnection(ConnectionString))
             {
@@ -22,16 +23,11 @@ namespace DeliverySolutions.Web.Infra
                     {
                         while (reader.Read())
                         {
-                            foo.AddSolution((string) reader["Name"]);
+                            solutionCollector.AddSolution((string) reader["Name"]);
                         }
                     }
                 }
             }
         }
-    }
-
-    public interface Foo
-    {
-        void AddSolution(string solution);
     }
 }
