@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infra\DatabaseConnectionCheckerShould.cs" />
+    <Compile Include="Infra\DeliverySolutionsShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

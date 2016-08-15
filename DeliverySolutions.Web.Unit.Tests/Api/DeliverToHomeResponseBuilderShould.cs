@@ -32,5 +32,14 @@ namespace DeliverySolutions.Web.Unit.Tests.Api
 
             Assert.That(_deliverToHomeResponseBuilder.Build().DeliveryAddressId, Is.EqualTo(DeliveryAddressId));
         }
+
+        [Test]
+        public void Build_response_with_given_solutions()
+        {
+            _deliverToHomeResponseBuilder.AddSolution("Solution 1");
+            _deliverToHomeResponseBuilder.AddSolution("Solution 2");
+
+            Assert.That(_deliverToHomeResponseBuilder.Build().Items[0].DeliverySolutions.Length, Is.EqualTo(2));
+        }
     }
 }

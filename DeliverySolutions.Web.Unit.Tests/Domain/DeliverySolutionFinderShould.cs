@@ -40,7 +40,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
         [Test]
         public void Add_solutions()
         {
-            _deliverySolutions.Received().WriteDeliverToHomeSolutionsTo(_deliverToHomeSolutionsBuilder, _variantIds, DeliveryAddressId);
+            _deliverySolutions.Received().WriteDeliverToHomeSolutionsTo(_deliverToHomeSolutionsBuilder, DeliveryAddressId);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DeliverySolutions.Web.Domain
         {
             deliverToHomeSolutionsBuilder.SetAssignmentId(assignmentId);
             deliverToHomeSolutionsBuilder.SetDeliveryAddressId(addressId);
-            _deliverySolutions.WriteDeliverToHomeSolutionsTo(deliverToHomeSolutionsBuilder, variantIds, addressId);
+            _deliverySolutions.WriteDeliverToHomeSolutionsTo(deliverToHomeSolutionsBuilder, addressId);
 
         }
     }

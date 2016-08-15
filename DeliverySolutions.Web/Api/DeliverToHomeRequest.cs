@@ -1,6 +1,4 @@
-﻿using System.Web.UI;
-
-namespace DeliverySolutions.Web.Api
+﻿namespace DeliverySolutions.Web.Api
 {
     public class DeliverToHomeRequest
     {
