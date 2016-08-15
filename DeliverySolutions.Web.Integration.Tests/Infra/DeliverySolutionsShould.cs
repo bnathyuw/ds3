@@ -10,9 +10,9 @@ namespace DeliverySolutions.Web.Integration.Tests.Infra
         [Test]
         public void Foo()
         {
-            var deliverySolutions = new Web.Infra.DeliverySolutions();
+            var deliverySolutions = new Web.Infra.SqlDeliverToHomeSolutions();
 
-            var foo = Substitute.For<DeliverToHomeSolutionsBuilder>();
+            var foo = Substitute.For<DeliverToHomeProposal>();
             deliverySolutions.WriteDeliverToHomeSolutionsTo(foo);
 
             foo.Received().AddSolution("Snail");

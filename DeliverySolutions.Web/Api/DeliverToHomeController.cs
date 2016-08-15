@@ -17,8 +17,7 @@ namespace DeliverySolutions.Web.Api
         public IHttpActionResult Post(DeliverToHomeRequest deliverToHomeRequest)
         {
             _deliverySolutionFinder.FindDthSolutions(_deliverToHomeResponseBuilder, deliverToHomeRequest.AssignmentId, deliverToHomeRequest.DeliveryDetails.AddressId);
-            var deliverToHomeResponse = _deliverToHomeResponseBuilder.Build();
-            return Ok(deliverToHomeResponse);
+            return Ok(_deliverToHomeResponseBuilder.Build());
         }
     }
 }

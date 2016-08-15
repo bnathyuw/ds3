@@ -4,7 +4,7 @@ using DeliverySolutions.Web.Domain;
 
 namespace DeliverySolutions.Web.Api
 {
-    public class DeliverToHomeResponseBuilder : DeliverToHomeSolutionsBuilder
+    public class DeliverToHomeResponseBuilder : DeliverToHomeProposal
     {
         private string _assignmentId;
         private int _deliveryAddressId;

@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using DeliverySolutions.Web.Infra;
+using DeliverySolutions.Web.Wiring;
 
 namespace DeliverySolutions.Web
 {

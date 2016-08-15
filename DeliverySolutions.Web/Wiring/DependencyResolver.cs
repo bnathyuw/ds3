@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Web.Http.Dependencies;
 using DeliverySolutions.Web.Api;
 using DeliverySolutions.Web.Domain;
+using DeliverySolutions.Web.Infra;
 
-namespace DeliverySolutions.Web.Infra
+namespace DeliverySolutions.Web.Wiring
 {
     public class DependencyResolver: IDependencyResolver
     {
@@ -32,7 +33,7 @@ namespace DeliverySolutions.Web.Infra
 
         private static DeliverToHomeController DeliverToHomeController()
         {
-            return new DeliverToHomeController(new DeliverToHomeResponseBuilder(), new DeliverySolutionFinder(new DeliverySolutions()));
+            return new DeliverToHomeController(new DeliverToHomeResponseBuilder(), new DeliverySolutionFinder(new Infra.SqlDeliverToHomeSolutions()));
         }
 
         private static HealthcheckController BuildHealthcheckController()

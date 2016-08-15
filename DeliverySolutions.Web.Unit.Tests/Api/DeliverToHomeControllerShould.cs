@@ -24,7 +24,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Api
         {
             _deliverToHomeResponseBuilder = Substitute.For<DeliverToHomeResponseBuilder>();
             _expectedDeliverToHomeResponse = new DeliverToHomeResponse();
-            _deliverySolutionFinder = Substitute.For<DeliverySolutionFinder>((Web.Infra.DeliverySolutions)null);
+            _deliverySolutionFinder = Substitute.For<DeliverySolutionFinder>((Web.Infra.SqlDeliverToHomeSolutions)null);
             _deliverToHomeController = new DeliverToHomeController(_deliverToHomeResponseBuilder, _deliverySolutionFinder);
         }
 

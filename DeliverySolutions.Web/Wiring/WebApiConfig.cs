@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace DeliverySolutions.Web.Infra
+namespace DeliverySolutions.Web.Wiring
 {
     public static class WebApiConfig
     {

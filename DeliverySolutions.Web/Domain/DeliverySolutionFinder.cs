@@ -5,26 +5,31 @@
         void AddSolution(string solution);
     }
 
-    public interface DeliverToHomeSolutionsBuilder : SolutionCollector
+    public interface DeliverToHomeProposal : SolutionCollector
     {
         void SetAssignmentId(string assignmentId);
         void SetDeliveryAddressId(int deliveryAddressId);
     }
 
+    public interface DeliverToHomeSolutions
+    {
+        void WriteDeliverToHomeSolutionsTo(SolutionCollector solutionCollector);
+    }
+
     public class DeliverySolutionFinder
     {
-        private readonly Infra.DeliverySolutions _deliverySolutions;
+        private readonly DeliverToHomeSolutions _deliverToHomeSolutions;
 
-        public DeliverySolutionFinder(Infra.DeliverySolutions deliverySolutions)
+        public DeliverySolutionFinder(DeliverToHomeSolutions deliverToHomeSolutions)
         {
-            _deliverySolutions = deliverySolutions;
+            _deliverToHomeSolutions = deliverToHomeSolutions;
         }
 
-        public virtual void FindDthSolutions(DeliverToHomeSolutionsBuilder deliverToHomeSolutionsBuilder, string assignmentId, int addressId)
+        public virtual void FindDthSolutions(DeliverToHomeProposal proposal, string assignmentId, int addressId)
         {
-            deliverToHomeSolutionsBuilder.SetAssignmentId(assignmentId);
-            deliverToHomeSolutionsBuilder.SetDeliveryAddressId(addressId);
-            _deliverySolutions.WriteDeliverToHomeSolutionsTo(deliverToHomeSolutionsBuilder);
+            proposal.SetAssignmentId(assignmentId);
+            proposal.SetDeliveryAddressId(addressId);
+            _deliverToHomeSolutions.WriteDeliverToHomeSolutionsTo(proposal);
         }
     }
 }

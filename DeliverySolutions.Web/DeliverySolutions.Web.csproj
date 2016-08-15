@@ -128,9 +128,9 @@
     <Compile Include="Domain\HealthChecker.cs" />
     <Compile Include="Infra\ThisService.cs" />
     <Compile Include="Infra\SqlDatabase.cs" />
-    <Compile Include="Infra\DeliverySolutions.cs" />
-    <Compile Include="Infra\DependencyResolver.cs" />
-    <Compile Include="Infra\WebApiConfig.cs" />
+    <Compile Include="Infra\SqlDeliverySolutions.cs" />
+    <Compile Include="Wiring\DependencyResolver.cs" />
+    <Compile Include="Wiring\WebApiConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

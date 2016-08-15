@@ -4,7 +4,7 @@ using DeliverySolutions.Web.Domain;
 
 namespace DeliverySolutions.Web.Infra
 {
-    public class DeliverySolutions
+    public class SqlDeliverToHomeSolutions : DeliverToHomeSolutions
     {
         private const string ConnectionString = "Server=(local)\\SQL2014;Database=DeliverySolutions;User Id=deliverysolutions;Password=deliverysolutions; ";
 
