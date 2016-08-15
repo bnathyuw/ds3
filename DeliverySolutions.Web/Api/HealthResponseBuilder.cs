@@ -1,27 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DeliverySolutions.Web.Domain;
 
 namespace DeliverySolutions.Web.Api
 {
-    public class HealthResponseBuilder : BuildHealth
+    public class HealthResponseBuilder : Domain.Health
     {
         private readonly List<Check> _checks = new List<Check>();
         private string _serviceVersion = "";
 
-        public void AddCheck(string name, bool isSuccessful)
+        public void SetDatabaseStatus(bool isSuccessful)
         {
-            _checks.Add(new Check(name, isSuccessful));
+            _checks.Add(new Check("Can connect to database", isSuccessful));
         }
 
-        public void WithServiceVersion(string serviceVersion)
+        public void SetServiceVersion(string serviceVersion)
         {
             _serviceVersion = serviceVersion;
         }
 
-        public virtual Health Build()
+        public virtual HealthResponse Build()
         {
-            return new Health(_checks, _serviceVersion, _checks.All(c => c.IsSuccessful));
+            return new HealthResponse(_checks, _serviceVersion, _checks.All(c => c.IsSuccessful));
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using DeliverySolutions.Web.Domain;
-using DeliverySolutions.Web.Domain.DeliverySolutions.Web.Domain;
 using DeliverySolutions.Web.Infra;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,13 +9,13 @@ namespace DeliverySolutions.Web.Integration.Tests.Infra
     public class SqlDatabaseShould
     {
         private Database _databaseConnectionChecker;
-        private BuildHealth _health;
+        private DatabaseStatus _health;
 
         [SetUp]
         public void SetUp()
         {
             _databaseConnectionChecker = new SqlDatabase();
-            _health = Substitute.For<BuildHealth>();
+            _health = Substitute.For<Health>();
         }
 
         [Test]
@@ -24,7 +23,7 @@ namespace DeliverySolutions.Web.Integration.Tests.Infra
         {
             _databaseConnectionChecker.WriteStatusTo(_health);
 
-            _health.Received().AddCheck("Can connect to database", true);
+            _health.Received().SetDatabaseStatus(true);
         }
     }
 }

@@ -25,7 +25,6 @@
             deliverToHomeSolutionsBuilder.SetAssignmentId(assignmentId);
             deliverToHomeSolutionsBuilder.SetDeliveryAddressId(addressId);
             _deliverySolutions.WriteDeliverToHomeSolutionsTo(deliverToHomeSolutionsBuilder);
-
         }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace DeliverySolutions.Web.Api
 {
-    public class Health
+    public class HealthResponse
     {
-        public Health(IEnumerable<Check> checks, string serviceVersion, bool isHealthy)
+        public HealthResponse(IEnumerable<Check> checks, string serviceVersion, bool isHealthy)
         {
             ServiceVersion = serviceVersion;
             IsHealthy = isHealthy;

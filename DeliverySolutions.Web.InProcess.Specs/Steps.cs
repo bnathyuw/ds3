@@ -11,13 +11,13 @@ namespace DeliverySolutions.Web.InProcess.Specs
     public class CheckStatusOfServiceSteps
     {
         private const string AssemblyVersionPattern = "\\d+\\.\\d+\\.\\d+\\.\\d+";
-        private Health _content;
+        private HealthResponse _content;
 
         [When(@"I hit the healthcheck endpoint")]
         public void WhenIHitTheHealthcheckEndpoint()
         {
-            var healthcheckController = new HealthcheckController(new HealthChecker(new SqlDatabase(), new ThisApplication()), new HealthResponseBuilder());
-            var response = (OkNegotiatedContentResult<Health>)healthcheckController.Get();
+            var healthcheckController = new HealthcheckController(new HealthChecker(new SqlDatabase(), new ThisService()), new HealthResponseBuilder());
+            var response = (OkNegotiatedContentResult<HealthResponse>)healthcheckController.Get();
             _content = response.Content;
         }
 

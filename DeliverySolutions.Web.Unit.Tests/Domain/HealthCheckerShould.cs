@@ -1,5 +1,4 @@
 ﻿using DeliverySolutions.Web.Domain;
-using DeliverySolutions.Web.Domain.DeliverySolutions.Web.Domain;
 using DeliverySolutions.Web.Infra;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,17 +9,17 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
     public class HealthCheckerShould
     {
         private HealthChecker _healthChecker;
-        private BuildHealth _healthBuilder;
+        private Health _healthBuilder;
         private Database _databaseConnectionChecker;
-        private Application _thisApplication;
+        private Service _thisService;
 
         [SetUp]
         public void SetUp()
         {
             _databaseConnectionChecker = Substitute.For<SqlDatabase>();
-            _healthBuilder = Substitute.For<BuildHealth>();
-            _thisApplication = Substitute.For<ThisApplication>();
-            _healthChecker = new HealthChecker(_databaseConnectionChecker, _thisApplication);
+            _healthBuilder = Substitute.For<Health>();
+            _thisService = Substitute.For<ThisService>();
+            _healthChecker = new HealthChecker(_databaseConnectionChecker, _thisService);
         }
 
         [Test]
@@ -28,7 +27,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
         {
             _healthChecker.WriteHealthTo(_healthBuilder);
 
-            _thisApplication.Received().WriteVersionTo(_healthBuilder);
+            _thisService.Received().WriteVersionTo(_healthBuilder);
         }
 
         [Test]
