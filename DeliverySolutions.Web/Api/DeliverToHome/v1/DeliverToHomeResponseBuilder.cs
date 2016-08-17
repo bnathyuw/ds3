@@ -2,7 +2,7 @@
 using System.Linq;
 using DeliverySolutions.Web.Domain;
 
-namespace DeliverySolutions.Web.Api
+namespace DeliverySolutions.Web.Api.DeliverToHome.v1
 {
     public class DeliverToHomeResponseBuilder : DeliverToHomeProposal
     {

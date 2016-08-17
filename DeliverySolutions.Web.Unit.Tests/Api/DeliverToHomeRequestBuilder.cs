@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DeliverySolutions.Web.Api;
+using DeliverySolutions.Web.Api.DeliverToHome.v1;
 
 namespace DeliverySolutions.Web.Unit.Tests.Api
 {

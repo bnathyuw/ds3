@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using DeliverySolutions.Web.Domain;
 
-namespace DeliverySolutions.Web.Api
+namespace DeliverySolutions.Web.Api.DeliverToHome.v1
 {
     public class DeliverToHomeController : ApiController
     {
@@ -14,6 +14,7 @@ namespace DeliverySolutions.Web.Api
             _deliverySolutionFinder = deliverySolutionFinder;
         }
 
+        [HttpPost, Route("v1/deliver-to-home")]
         public IHttpActionResult Post(DeliverToHomeRequest deliverToHomeRequest)
         {
             _deliverySolutionFinder.FindDthSolutions(_deliverToHomeResponseBuilder, deliverToHomeRequest.AssignmentId, deliverToHomeRequest.DeliveryDetails.AddressId);

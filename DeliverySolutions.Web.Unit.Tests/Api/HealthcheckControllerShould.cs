@@ -1,4 +1,5 @@
 ﻿using DeliverySolutions.Web.Api;
+using DeliverySolutions.Web.Api.HealthCheck.v1;
 using DeliverySolutions.Web.Domain;
 using NSubstitute;
 using NUnit.Framework;

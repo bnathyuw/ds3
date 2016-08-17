@@ -1,4 +1,4 @@
-namespace DeliverySolutions.Web.Api
+namespace DeliverySolutions.Web.Api.HealthCheck.v1
 {
     public struct Check
     {

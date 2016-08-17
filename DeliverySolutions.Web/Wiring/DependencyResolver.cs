@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
 using DeliverySolutions.Web.Api;
+using DeliverySolutions.Web.Api.DeliverToHome.v1;
+using DeliverySolutions.Web.Api.HealthCheck.v1;
 using DeliverySolutions.Web.Domain;
 using DeliverySolutions.Web.Infra;
 

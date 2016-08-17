@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DeliverySolutions.Web.Api
+namespace DeliverySolutions.Web.Api.HealthCheck.v1
 {
     public class HealthResponse
     {

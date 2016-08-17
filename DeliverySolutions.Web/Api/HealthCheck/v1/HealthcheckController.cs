@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using DeliverySolutions.Web.Domain;
 
-namespace DeliverySolutions.Web.Api
+namespace DeliverySolutions.Web.Api.HealthCheck.v1
 {
     public class HealthcheckController : ApiController
     {
@@ -14,6 +14,7 @@ namespace DeliverySolutions.Web.Api
             _healthResponseBuilder = healthResponseBuilder;
         }
 
+        [HttpGet, Route("v1/healthcheck")]
         public IHttpActionResult Get()
         {
             _healthChecker.WriteHealthTo(_healthResponseBuilder);

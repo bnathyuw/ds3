@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace DeliverySolutions.Web.Api
+namespace DeliverySolutions.Web.Api.HealthCheck.v1
 {
     public class HealthResponseBuilder : Domain.Health
     {

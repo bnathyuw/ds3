@@ -8,17 +8,6 @@ namespace DeliverySolutions.Web.Wiring
         {
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "DeliverToHome",
-                routeTemplate: "v1/deliver-to-home/",
-                defaults: new {controller = "DeliverToHome"});
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "v1/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
             config.DependencyResolver = new DependencyResolver();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using DeliverySolutions.Web.Api;
+using DeliverySolutions.Web.Api.HealthCheck.v1;
 using NUnit.Framework;
 
 namespace DeliverySolutions.Web.Unit.Tests.Api

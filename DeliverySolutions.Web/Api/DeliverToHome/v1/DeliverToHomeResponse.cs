@@ -1,4 +1,4 @@
-﻿namespace DeliverySolutions.Web.Api
+﻿namespace DeliverySolutions.Web.Api.DeliverToHome.v1
 {
     public class DeliverToHomeResponse
     {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using DeliverySolutions.Web.Api;
+using DeliverySolutions.Web.Api.DeliverToHome.v1;
+using DeliverySolutions.Web.Api.HealthCheck.v1;
 using DeliverySolutions.Web.Infra;
 using DeliverySolutions.Web.Wiring;
 using NUnit.Framework;
