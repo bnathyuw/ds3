@@ -1,12 +1,10 @@
 ﻿using System.Web.Http.Results;
-using DeliverySolutions.Web.Api;
 using DeliverySolutions.Web.Api.DeliverToHome.v1;
 using DeliverySolutions.Web.Domain;
 using NSubstitute;
 using NUnit.Framework;
-using static DeliverySolutions.Web.Unit.Tests.Api.DeliverToHomeRequestBuilder;
 
-namespace DeliverySolutions.Web.Unit.Tests.Api
+namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
 {
     [TestFixture]
     public class DeliverToHomeControllerShould
@@ -15,6 +13,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Api
         private DeliverToHomeResponse _expectedDeliverToHomeResponse;
         private DeliverToHomeController _deliverToHomeController;
         private DeliverySolutionFinder _deliverySolutionFinder;
+        private BagFactory _bagFactory;
         private const string AssignmentId = "123";
         private const int AddressId = 123;
         private const int VariantId = 234;
@@ -26,21 +25,33 @@ namespace DeliverySolutions.Web.Unit.Tests.Api
             _deliverToHomeResponseBuilder = Substitute.For<DeliverToHomeResponseBuilder>();
             _expectedDeliverToHomeResponse = new DeliverToHomeResponse();
             _deliverySolutionFinder = Substitute.For<DeliverySolutionFinder>((Web.Infra.SqlDeliverToHomeSolutions)null);
-            _deliverToHomeController = new DeliverToHomeController(_deliverToHomeResponseBuilder, _deliverySolutionFinder);
+            _bagFactory = Substitute.For<BagFactory>();
+            _deliverToHomeController = new DeliverToHomeController(_deliverToHomeResponseBuilder, _deliverySolutionFinder, _bagFactory);
+        }
+
+        [Test]
+        public void Build_a_bag()
+        {
+            var deliverToHomeRequest = DeliverToHomeRequestBuilder.ADeliverToHomeRequest.Build();
+            _deliverToHomeController.Post(deliverToHomeRequest);
+
+            _bagFactory.Received().BuildFrom(deliverToHomeRequest);
         }
 
         [Test]
         public void Find_delivery_solutions()
         {
-            var deliverToHomeRequest = ADeliverToHomeRequest
+            var deliverToHomeRequest = DeliverToHomeRequestBuilder.ADeliverToHomeRequest
                 .WithAssignmentId(AssignmentId)
                 .WithAddressId(AddressId)
                 .AddVariantId(VariantId)
                 .AddVariantId(AnotherVariantId)
                 .Build();
+            var bag = new Bag(AssignmentId, AddressId);
+            _bagFactory.BuildFrom(deliverToHomeRequest).Returns(bag);
             _deliverToHomeController.Post(deliverToHomeRequest);
 
-            _deliverySolutionFinder.Received().FindDthSolutions(_deliverToHomeResponseBuilder, AssignmentId, AddressId);
+            _deliverySolutionFinder.Received().FindDthSolutions(_deliverToHomeResponseBuilder, bag);
         }
 
         [Test]
@@ -48,7 +59,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Api
         {
             _deliverToHomeResponseBuilder.Build().Returns(_expectedDeliverToHomeResponse);
 
-            var deliverToHomeRequest = ADeliverToHomeRequest.Build();
+            var deliverToHomeRequest = DeliverToHomeRequestBuilder.ADeliverToHomeRequest.Build();
             var httpActionResult = (OkNegotiatedContentResult<DeliverToHomeResponse>)_deliverToHomeController.Post(deliverToHomeRequest);
 
             Assert.That(httpActionResult.Content, Is.EqualTo(_expectedDeliverToHomeResponse));

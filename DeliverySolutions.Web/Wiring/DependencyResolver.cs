@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
-using DeliverySolutions.Web.Api;
 using DeliverySolutions.Web.Api.DeliverToHome.v1;
 using DeliverySolutions.Web.Api.HealthCheck.v1;
 using DeliverySolutions.Web.Domain;
@@ -35,7 +34,7 @@ namespace DeliverySolutions.Web.Wiring
 
         private static DeliverToHomeController DeliverToHomeController()
         {
-            return new DeliverToHomeController(new DeliverToHomeResponseBuilder(), new DeliverySolutionFinder(new Infra.SqlDeliverToHomeSolutions()));
+            return new DeliverToHomeController(new DeliverToHomeResponseBuilder(), new DeliverySolutionFinder(new Infra.SqlDeliverToHomeSolutions()), new BagFactory());
         }
 
         private static HealthcheckController BuildHealthcheckController()

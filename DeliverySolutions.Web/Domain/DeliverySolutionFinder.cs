@@ -25,10 +25,10 @@
             _deliverToHomeSolutions = deliverToHomeSolutions;
         }
 
-        public virtual void FindDthSolutions(DeliverToHomeProposal proposal, string assignmentId, int addressId)
+        public virtual void FindDthSolutions(DeliverToHomeProposal proposal, Bag bag)
         {
-            proposal.SetAssignmentId(assignmentId);
-            proposal.SetDeliveryAddressId(addressId);
+            proposal.SetAssignmentId(bag.AssignmentId);
+            proposal.SetDeliveryAddressId(bag.DeliveryAddressId);
             _deliverToHomeSolutions.WriteDeliverToHomeSolutionsTo(proposal);
         }
     }

@@ -1,8 +1,7 @@
-﻿using DeliverySolutions.Web.Api;
-using DeliverySolutions.Web.Api.HealthCheck.v1;
+﻿using DeliverySolutions.Web.Api.HealthCheck.v1;
 using NUnit.Framework;
 
-namespace DeliverySolutions.Web.Unit.Tests.Api
+namespace DeliverySolutions.Web.Unit.Tests.Api.Healthcheck.v1
 {
     [TestFixture]
     public class HealthResponseBuilderShould

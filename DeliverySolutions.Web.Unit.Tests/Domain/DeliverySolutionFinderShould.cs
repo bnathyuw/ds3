@@ -11,8 +11,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
         private const int DeliveryAddressId = 234;
         private DeliverySolutionFinder _deliverySolutionFinder;
         private DeliverToHomeProposal _deliverToHomeProposal;
-        private Web.Domain.DeliverToHomeSolutions _deliverToHomeSolutions;
-        private readonly int[] _variantIds = {345, 456};
+        private DeliverToHomeSolutions _deliverToHomeSolutions;
 
         [SetUp]
         public void SetUp()
@@ -21,7 +20,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
             _deliverToHomeSolutions = Substitute.For<Web.Infra.SqlDeliverToHomeSolutions>();
             _deliverySolutionFinder = new DeliverySolutionFinder(_deliverToHomeSolutions);
 
-            _deliverySolutionFinder.FindDthSolutions(_deliverToHomeProposal, AssignmentId, DeliveryAddressId);
+            _deliverySolutionFinder.FindDthSolutions(_deliverToHomeProposal, new Bag(AssignmentId, DeliveryAddressId));
 
         }
 
