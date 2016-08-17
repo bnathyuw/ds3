@@ -7,8 +7,7 @@
 
     public interface DeliverToHomeProposal : SolutionCollector
     {
-        void SetAssignmentId(string assignmentId);
-        void SetDeliveryAddressId(int deliveryAddressId);
+        void ForBag(Bag bag);
     }
 
     public interface DeliverToHomeSolutions
@@ -27,8 +26,7 @@
 
         public virtual void FindDthSolutions(DeliverToHomeProposal proposal, Bag bag)
         {
-            proposal.SetAssignmentId(bag.AssignmentId);
-            proposal.SetDeliveryAddressId(bag.DeliveryAddressId);
+            proposal.ForBag(bag);
             _deliverToHomeSolutions.WriteDeliverToHomeSolutionsTo(proposal);
         }
     }

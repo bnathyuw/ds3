@@ -12,6 +12,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
         private DeliverySolutionFinder _deliverySolutionFinder;
         private DeliverToHomeProposal _deliverToHomeProposal;
         private DeliverToHomeSolutions _deliverToHomeSolutions;
+        private Bag _bag;
 
         [SetUp]
         public void SetUp()
@@ -20,20 +21,15 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
             _deliverToHomeSolutions = Substitute.For<Web.Infra.SqlDeliverToHomeSolutions>();
             _deliverySolutionFinder = new DeliverySolutionFinder(_deliverToHomeSolutions);
 
-            _deliverySolutionFinder.FindDthSolutions(_deliverToHomeProposal, new Bag(AssignmentId, DeliveryAddressId));
+            _bag = new Bag(AssignmentId, DeliveryAddressId);
+            _deliverySolutionFinder.FindDthSolutions(_deliverToHomeProposal, _bag);
 
         }
 
         [Test]
-        public void Set_assignment_id_on_the_solutions()
+        public void Set_bag_for_proposal()
         {
-            _deliverToHomeProposal.Received().SetAssignmentId(AssignmentId);
-        }
-
-        [Test]
-        public void Set_address_id_on_the_solutions()
-        {
-            _deliverToHomeProposal.Received().SetDeliveryAddressId(DeliveryAddressId);
+            _deliverToHomeProposal.Received().ForBag(_bag);
         }
 
         [Test]

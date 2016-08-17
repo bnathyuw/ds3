@@ -3,6 +3,7 @@ using DeliverySolutions.Web.Api.DeliverToHome.v1;
 using DeliverySolutions.Web.Domain;
 using NSubstitute;
 using NUnit.Framework;
+using static DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1.DeliverToHomeRequestBuilder;
 
 namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
 {
@@ -14,10 +15,6 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
         private DeliverToHomeController _deliverToHomeController;
         private DeliverySolutionFinder _deliverySolutionFinder;
         private BagFactory _bagFactory;
-        private const string AssignmentId = "123";
-        private const int AddressId = 123;
-        private const int VariantId = 234;
-        private const int AnotherVariantId = 345;
 
         [SetUp]
         public void SetUp()
@@ -32,7 +29,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
         [Test]
         public void Build_a_bag()
         {
-            var deliverToHomeRequest = DeliverToHomeRequestBuilder.ADeliverToHomeRequest.Build();
+            var deliverToHomeRequest = ADeliverToHomeRequest.Build();
             _deliverToHomeController.Post(deliverToHomeRequest);
 
             _bagFactory.Received().BuildFrom(deliverToHomeRequest);
@@ -41,13 +38,8 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
         [Test]
         public void Find_delivery_solutions()
         {
-            var deliverToHomeRequest = DeliverToHomeRequestBuilder.ADeliverToHomeRequest
-                .WithAssignmentId(AssignmentId)
-                .WithAddressId(AddressId)
-                .AddVariantId(VariantId)
-                .AddVariantId(AnotherVariantId)
-                .Build();
-            var bag = new Bag(AssignmentId, AddressId);
+            var deliverToHomeRequest = ADeliverToHomeRequest.Build();
+            var bag = new Bag("123", 123);
             _bagFactory.BuildFrom(deliverToHomeRequest).Returns(bag);
             _deliverToHomeController.Post(deliverToHomeRequest);
 
@@ -59,7 +51,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
         {
             _deliverToHomeResponseBuilder.Build().Returns(_expectedDeliverToHomeResponse);
 
-            var deliverToHomeRequest = DeliverToHomeRequestBuilder.ADeliverToHomeRequest.Build();
+            var deliverToHomeRequest = ADeliverToHomeRequest.Build();
             var httpActionResult = (OkNegotiatedContentResult<DeliverToHomeResponse>)_deliverToHomeController.Post(deliverToHomeRequest);
 
             Assert.That(httpActionResult.Content, Is.EqualTo(_expectedDeliverToHomeResponse));

@@ -1,4 +1,5 @@
 ﻿using DeliverySolutions.Web.Api.DeliverToHome.v1;
+using DeliverySolutions.Web.Domain;
 using NUnit.Framework;
 
 namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
@@ -20,16 +21,9 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
         [Test]
         public void Build_response_with_given_assignment_id()
         {
-            _deliverToHomeResponseBuilder.SetAssignmentId(AssignmentId);
+            _deliverToHomeResponseBuilder.ForBag(new Bag(AssignmentId, DeliveryAddressId));
 
             Assert.That(_deliverToHomeResponseBuilder.Build().AssignmentId, Is.EqualTo(AssignmentId));
-        }
-
-        [Test]
-        public void Build_response_with_given_delivery_address_id()
-        {
-            _deliverToHomeResponseBuilder.SetDeliveryAddressId(DeliveryAddressId);
-
             Assert.That(_deliverToHomeResponseBuilder.Build().DeliveryAddressId, Is.EqualTo(DeliveryAddressId));
         }
 

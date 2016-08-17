@@ -10,14 +10,10 @@ namespace DeliverySolutions.Web.Api.DeliverToHome.v1
         private int _deliveryAddressId;
         private readonly List<string> _solutions = new List<string>();
 
-        public virtual void SetAssignmentId(string assignmentId)
+        public virtual void ForBag(Bag bag)
         {
-            _assignmentId = assignmentId;
-        }
-
-        public virtual void SetDeliveryAddressId(int deliveryAddressId)
-        {
-            _deliveryAddressId = deliveryAddressId;
+            _assignmentId = bag.AssignmentId;
+            _deliveryAddressId = bag.DeliveryAddressId;
         }
 
         public void AddSolution(string solution)
