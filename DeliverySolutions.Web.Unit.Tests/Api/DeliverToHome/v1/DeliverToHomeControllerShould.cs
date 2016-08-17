@@ -14,7 +14,9 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
         private DeliverToHomeResponse _expectedDeliverToHomeResponse;
         private DeliverToHomeController _deliverToHomeController;
         private DeliverySolutionFinder _deliverySolutionFinder;
-        private BagFactory _bagFactory;
+
+        private const string AssignmentId = "abc";
+        private const int AddressId = 123;
 
         [SetUp]
         public void SetUp()
@@ -22,28 +24,28 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
             _deliverToHomeResponseBuilder = Substitute.For<DeliverToHomeResponseBuilder>();
             _expectedDeliverToHomeResponse = new DeliverToHomeResponse();
             _deliverySolutionFinder = Substitute.For<DeliverySolutionFinder>((Web.Infra.SqlDeliverToHomeSolutions)null);
-            _bagFactory = Substitute.For<BagFactory>();
-            _deliverToHomeController = new DeliverToHomeController(_deliverToHomeResponseBuilder, _deliverySolutionFinder, _bagFactory);
+            _deliverToHomeController = new DeliverToHomeController(_deliverToHomeResponseBuilder, _deliverySolutionFinder);
         }
 
         [Test]
-        public void Build_a_bag()
+        public void Update_builder_with_bag_details()
         {
-            var deliverToHomeRequest = ADeliverToHomeRequest.Build();
+            var deliverToHomeRequest = ADeliverToHomeRequest.WithAssignmentId(AssignmentId).WithAddressId(AddressId).Build();
+
             _deliverToHomeController.Post(deliverToHomeRequest);
 
-            _bagFactory.Received().BuildFrom(deliverToHomeRequest);
+            _deliverToHomeResponseBuilder.Received().WithAssignmentId(AssignmentId);
+            _deliverToHomeResponseBuilder.Received().WithAddressId(AddressId);
         }
+
 
         [Test]
         public void Find_delivery_solutions()
         {
             var deliverToHomeRequest = ADeliverToHomeRequest.Build();
-            var bag = new Bag("123", 123);
-            _bagFactory.BuildFrom(deliverToHomeRequest).Returns(bag);
             _deliverToHomeController.Post(deliverToHomeRequest);
 
-            _deliverySolutionFinder.Received().FindDthSolutions(_deliverToHomeResponseBuilder, bag);
+            _deliverySolutionFinder.Received().FindDthSolutions(_deliverToHomeResponseBuilder);
         }
 
         [Test]

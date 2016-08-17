@@ -7,19 +7,19 @@ namespace DeliverySolutions.Web.Api.DeliverToHome.v1
     {
         private readonly DeliverToHomeResponseBuilder _deliverToHomeResponseBuilder;
         private readonly DeliverySolutionFinder _deliverySolutionFinder;
-        private readonly BagFactory _bagFactory;
 
-        public DeliverToHomeController(DeliverToHomeResponseBuilder deliverToHomeResponseBuilder, DeliverySolutionFinder deliverySolutionFinder, BagFactory bagFactory)
+        public DeliverToHomeController(DeliverToHomeResponseBuilder deliverToHomeResponseBuilder, DeliverySolutionFinder deliverySolutionFinder)
         {
             _deliverToHomeResponseBuilder = deliverToHomeResponseBuilder;
             _deliverySolutionFinder = deliverySolutionFinder;
-            _bagFactory = bagFactory;
         }
 
         [HttpPost, Route("v1/deliver-to-home")]
         public IHttpActionResult Post(DeliverToHomeRequest deliverToHomeRequest)
         {
-            _deliverySolutionFinder.FindDthSolutions(_deliverToHomeResponseBuilder, _bagFactory.BuildFrom(deliverToHomeRequest));
+            _deliverToHomeResponseBuilder.WithAssignmentId(deliverToHomeRequest.AssignmentId);
+            _deliverToHomeResponseBuilder.WithAddressId(deliverToHomeRequest.DeliveryDetails.AddressId);
+            _deliverySolutionFinder.FindDthSolutions(_deliverToHomeResponseBuilder);
             return Ok(_deliverToHomeResponseBuilder.Build());
         }
     }

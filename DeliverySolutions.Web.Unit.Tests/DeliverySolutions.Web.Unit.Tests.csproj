@@ -60,7 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\DeliverToHome\v1\BagFactoryShould.cs" />
     <Compile Include="Api\DeliverToHome\v1\DeliverToHomeControllerShould.cs" />
     <Compile Include="Api\DeliverToHome\v1\DeliverToHomeRequestBuilder.cs" />
     <Compile Include="Api\DeliverToHome\v1\DeliverToHomeResponseBuilderShould.cs" />

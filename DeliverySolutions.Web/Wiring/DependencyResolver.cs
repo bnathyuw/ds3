@@ -34,7 +34,7 @@ namespace DeliverySolutions.Web.Wiring
 
         private static DeliverToHomeController DeliverToHomeController()
         {
-            return new DeliverToHomeController(new DeliverToHomeResponseBuilder(), new DeliverySolutionFinder(new Infra.SqlDeliverToHomeSolutions()), new BagFactory());
+            return new DeliverToHomeController(new DeliverToHomeResponseBuilder(), new DeliverySolutionFinder(new Infra.SqlDeliverToHomeSolutions()));
         }
 
         private static HealthcheckController BuildHealthcheckController()

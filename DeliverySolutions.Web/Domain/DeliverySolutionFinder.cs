@@ -7,7 +7,6 @@
 
     public interface DeliverToHomeProposal : SolutionCollector
     {
-        void ForBag(Bag bag);
     }
 
     public interface DeliverToHomeSolutions
@@ -24,9 +23,8 @@
             _deliverToHomeSolutions = deliverToHomeSolutions;
         }
 
-        public virtual void FindDthSolutions(DeliverToHomeProposal proposal, Bag bag)
+        public virtual void FindDthSolutions(DeliverToHomeProposal proposal)
         {
-            proposal.ForBag(bag);
             _deliverToHomeSolutions.WriteDeliverToHomeSolutionsTo(proposal);
         }
     }
