@@ -18,13 +18,13 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
             _deliverToHomeSolutions = Substitute.For<Web.Infra.SqlDeliverToHomeSolutions>();
             _deliverySolutionFinder = new DeliverySolutionFinder(_deliverToHomeSolutions);
 
-            _deliverySolutionFinder.FindDthSolutions(_deliverToHomeProposal);
+            _deliverySolutionFinder.WriteDeliverToHomeSolutionsTo(_deliverToHomeProposal);
         }
 
         [Test]
         public void Add_solutions()
         {
-            _deliverToHomeSolutions.Received().WriteDeliverToHomeSolutionsTo(_deliverToHomeProposal);
+            _deliverToHomeSolutions.Received().WriteTo(_deliverToHomeProposal);
         }
     }
 }

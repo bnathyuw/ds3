@@ -14,7 +14,7 @@ namespace DeliverySolutions.Web.Integration.Tests.Infra
             var deliverySolutions = new SqlDeliverToHomeSolutions();
 
             var deliverToHomeProposal = Substitute.For<DeliverToHomeProposal>();
-            deliverySolutions.WriteDeliverToHomeSolutionsTo(deliverToHomeProposal);
+            deliverySolutions.WriteTo(deliverToHomeProposal);
 
             Received.InOrder(() =>
             {

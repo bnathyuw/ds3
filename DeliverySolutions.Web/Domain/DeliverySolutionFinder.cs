@@ -1,17 +1,13 @@
 ﻿namespace DeliverySolutions.Web.Domain
 {
-    public interface SolutionCollector
+    public interface DeliverToHomeProposal
     {
         void AddSolution(string solution);
     }
 
-    public interface DeliverToHomeProposal : SolutionCollector
-    {
-    }
-
     public interface DeliverToHomeSolutions
     {
-        void WriteDeliverToHomeSolutionsTo(SolutionCollector solutionCollector);
+        void WriteTo(DeliverToHomeProposal deliverToHomeProposal);
     }
 
     public class DeliverySolutionFinder
@@ -23,9 +19,9 @@
             _deliverToHomeSolutions = deliverToHomeSolutions;
         }
 
-        public virtual void FindDthSolutions(DeliverToHomeProposal proposal)
+        public virtual void WriteDeliverToHomeSolutionsTo(DeliverToHomeProposal deliverToHomeProposal)
         {
-            _deliverToHomeSolutions.WriteDeliverToHomeSolutionsTo(proposal);
+            _deliverToHomeSolutions.WriteTo(deliverToHomeProposal);
         }
     }
 }

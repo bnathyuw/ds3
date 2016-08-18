@@ -8,7 +8,7 @@ namespace DeliverySolutions.Web.Infra
     {
         private const string ConnectionString = "Server=(local)\\SQL2014;Database=DeliverySolutions;User Id=deliverysolutions;Password=deliverysolutions; ";
 
-        public virtual void WriteDeliverToHomeSolutionsTo(SolutionCollector solutionCollector)
+        public virtual void WriteTo(DeliverToHomeProposal deliverToHomeProposal)
         {
             using (var sqlConnection = new SqlConnection(ConnectionString))
             {
@@ -23,7 +23,7 @@ namespace DeliverySolutions.Web.Infra
                     {
                         while (reader.Read())
                         {
-                            solutionCollector.AddSolution((string) reader["Name"]);
+                            deliverToHomeProposal.AddSolution((string) reader["Name"]);
                         }
                     }
                 }

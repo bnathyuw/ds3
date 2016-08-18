@@ -46,7 +46,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
             var deliverToHomeRequest = ADeliverToHomeRequest.Build();
             _deliverToHomeController.Post(deliverToHomeRequest);
 
-            _deliverySolutionFinder.Received().FindDthSolutions(_deliverToHomeResponseBuilder);
+            _deliverySolutionFinder.Received().WriteDeliverToHomeSolutionsTo(_deliverToHomeResponseBuilder);
         }
 
         [Test]
