@@ -1,14 +1,24 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DeliverySolutions.OutOfProcess.Specs.Request
 {
     public class DthRequestBuilder
     {
-        private string _assignmentId = "Assignment ID";
-        private string _region = "Region 1";
-        private readonly List<Item> _items = new List<Item>();
-        private readonly DeliveryDetailsBuilder _deliveryDetailsBuilder = DeliveryDetailsBuilder.ADeliveryDetails;
-        public static DthRequestBuilder ADthRequest => new DthRequestBuilder();
+        private readonly string _assignmentId;
+        private readonly string _region;
+        private readonly IEnumerable<Item> _items;
+        private readonly DeliveryDetailsBuilder _deliveryDetailsBuilder;
+
+        public static DthRequestBuilder ADthRequest => new DthRequestBuilder("Assignment ID", "Region 1", new List<Item>(), DeliveryDetailsBuilder.ADeliveryDetails);
+
+        private DthRequestBuilder(string assignmentId, string region, IEnumerable<Item> items, DeliveryDetailsBuilder deliveryDetailsBuilder)
+        {
+            _assignmentId = assignmentId;
+            _region = region;
+            _items = items;
+            _deliveryDetailsBuilder = deliveryDetailsBuilder;
+        }
 
         public DthRequest Build()
         {
@@ -23,8 +33,8 @@ namespace DeliverySolutions.OutOfProcess.Specs.Request
 
         public DthRequestBuilder WithVariantId(int variantId)
         {
-            _items.Add(new Item {VariantId = variantId});
-            return this;
+            return new DthRequestBuilder(_assignmentId, _region, _items.Concat(new[] {new Item {VariantId = variantId}}),
+                _deliveryDetailsBuilder);
         }
     }
 }

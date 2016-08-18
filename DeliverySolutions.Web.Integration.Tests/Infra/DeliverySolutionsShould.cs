@@ -1,4 +1,5 @@
 ﻿using DeliverySolutions.Web.Domain;
+using DeliverySolutions.Web.Infra;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -8,15 +9,18 @@ namespace DeliverySolutions.Web.Integration.Tests.Infra
     public class DeliverySolutionsShould
     {
         [Test]
-        public void Foo()
+        public void Write_solutions_from_database_to_proposal()
         {
-            var deliverySolutions = new Web.Infra.SqlDeliverToHomeSolutions();
+            var deliverySolutions = new SqlDeliverToHomeSolutions();
 
-            var foo = Substitute.For<DeliverToHomeProposal>();
-            deliverySolutions.WriteDeliverToHomeSolutionsTo(foo);
+            var deliverToHomeProposal = Substitute.For<DeliverToHomeProposal>();
+            deliverySolutions.WriteDeliverToHomeSolutionsTo(deliverToHomeProposal);
 
-            foo.Received().AddSolution("Snail");
-            foo.Received().AddSolution("Snail");
+            Received.InOrder(() =>
+            {
+                deliverToHomeProposal.Received().AddSolution("Express");
+                deliverToHomeProposal.Received().AddSolution("Snail");
+            });
         }
     }
 }

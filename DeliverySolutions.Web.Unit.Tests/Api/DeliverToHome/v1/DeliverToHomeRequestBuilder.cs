@@ -6,28 +6,32 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
 {
     public class DeliverToHomeRequestBuilder
     {
-        private string _assignmentId = "";
-        private int _addressId;
-        private readonly List<int> _variantIds = new List<int>();
+        private readonly string _assignmentId;
+        private readonly int _addressId;
+        private readonly IEnumerable<int> _variantIds;
 
-        public static DeliverToHomeRequestBuilder ADeliverToHomeRequest => new DeliverToHomeRequestBuilder();
+        public static DeliverToHomeRequestBuilder ADeliverToHomeRequest => new DeliverToHomeRequestBuilder("", 0, new int[]{});
+
+        private DeliverToHomeRequestBuilder(string assignmentId, int addressId, IEnumerable<int> variantIds)
+        {
+            _assignmentId = assignmentId;
+            _addressId = addressId;
+            _variantIds = variantIds;
+        }
 
         public DeliverToHomeRequestBuilder WithAssignmentId(string assignmentId)
         {
-            _assignmentId = assignmentId;
-            return this;
+            return new DeliverToHomeRequestBuilder(assignmentId, _addressId, _variantIds);
         }
 
         public DeliverToHomeRequestBuilder WithAddressId(int addressId)
         {
-            _addressId = addressId;
-            return this;
+            return new DeliverToHomeRequestBuilder(_assignmentId, addressId, _variantIds);
         }
 
         public DeliverToHomeRequestBuilder AddVariantId(int variantId)
         {
-            _variantIds.Add(variantId);
-            return this;
+            return new DeliverToHomeRequestBuilder(_assignmentId, _addressId, _variantIds.Concat(new [] { variantId}));
         }
 
         public DeliverToHomeRequest Build()
