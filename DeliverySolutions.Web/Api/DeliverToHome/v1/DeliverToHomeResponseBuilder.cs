@@ -30,19 +30,11 @@ namespace DeliverySolutions.Web.Api.DeliverToHome.v1
             };
         }
 
-        public virtual void WithAssignmentId(string assignmentId)
+        public virtual void WithRequest(DeliverToHomeRequest deliverToHomeRequest)
         {
-            _assignmentId = assignmentId;
-        }
-
-        public virtual void WithAddressId(int addressId)
-        {
-            _deliveryAddressId = addressId;
-        }
-
-        public void AddItem(int variantId)
-        {
-            _variantIds.Add(variantId);
+            _assignmentId = deliverToHomeRequest.AssignmentId;
+            _deliveryAddressId = deliverToHomeRequest.DeliveryDetails.AddressId;
+            _variantIds.AddRange(deliverToHomeRequest.Items.Select(item => item.VariantId));
         }
     }
 }

@@ -36,10 +36,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
 
             _deliverToHomeController.Post(deliverToHomeRequest);
 
-            _deliverToHomeResponseBuilder.Received().WithAssignmentId(AssignmentId);
-            _deliverToHomeResponseBuilder.Received().WithAddressId(AddressId);
-            _deliverToHomeResponseBuilder.AddItem(VariantId1);
-            _deliverToHomeResponseBuilder.AddItem(VariantId2);
+            _deliverToHomeResponseBuilder.Received().WithRequest(deliverToHomeRequest);
         }
 
 

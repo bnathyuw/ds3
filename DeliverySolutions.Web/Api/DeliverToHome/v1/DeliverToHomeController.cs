@@ -17,12 +17,7 @@ namespace DeliverySolutions.Web.Api.DeliverToHome.v1
         [HttpPost, Route("v1/deliver-to-home")]
         public IHttpActionResult Post(DeliverToHomeRequest deliverToHomeRequest)
         {
-            _deliverToHomeResponseBuilder.WithAssignmentId(deliverToHomeRequest.AssignmentId);
-            _deliverToHomeResponseBuilder.WithAddressId(deliverToHomeRequest.DeliveryDetails.AddressId);
-            foreach (var item in deliverToHomeRequest.Items)
-            {
-                _deliverToHomeResponseBuilder.AddItem(item.VariantId);
-            }
+            _deliverToHomeResponseBuilder.WithRequest(deliverToHomeRequest);
             _deliverySolutionFinder.FindDthSolutions(_deliverToHomeResponseBuilder);
             return Ok(_deliverToHomeResponseBuilder.Build());
         }
