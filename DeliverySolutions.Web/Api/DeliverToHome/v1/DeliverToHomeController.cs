@@ -19,6 +19,10 @@ namespace DeliverySolutions.Web.Api.DeliverToHome.v1
         {
             _deliverToHomeResponseBuilder.WithAssignmentId(deliverToHomeRequest.AssignmentId);
             _deliverToHomeResponseBuilder.WithAddressId(deliverToHomeRequest.DeliveryDetails.AddressId);
+            foreach (var item in deliverToHomeRequest.Items)
+            {
+                _deliverToHomeResponseBuilder.AddItem(item.VariantId);
+            }
             _deliverySolutionFinder.FindDthSolutions(_deliverToHomeResponseBuilder);
             return Ok(_deliverToHomeResponseBuilder.Build());
         }

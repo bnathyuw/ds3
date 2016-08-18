@@ -34,8 +34,20 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
         }
 
         [Test]
+        public void Build_respones_with_given_items()
+        {
+            _deliverToHomeResponseBuilder.AddItem(123);
+            _deliverToHomeResponseBuilder.AddItem(234);
+
+            Assert.That(_deliverToHomeResponseBuilder.Build().Items.Length, Is.EqualTo(2));
+            Assert.That(_deliverToHomeResponseBuilder.Build().Items[0].VariantId, Is.EqualTo(123));
+            Assert.That(_deliverToHomeResponseBuilder.Build().Items[1].VariantId, Is.EqualTo(234));
+        }
+
+        [Test]
         public void Build_response_with_given_solutions()
         {
+            _deliverToHomeResponseBuilder.AddItem(123);
             _deliverToHomeResponseBuilder.AddSolution("Solution 1");
             _deliverToHomeResponseBuilder.AddSolution("Solution 2");
 

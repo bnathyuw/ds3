@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace DeliverySolutions.Web.InProcess.Specs
 {
     [Binding]
-    public class CheckStatusOfServiceSteps
+    public class HealthcheckSteps
     {
         private const string AssemblyVersionPattern = "\\d+\\.\\d+\\.\\d+\\.\\d+";
         private HealthResponse _content;
@@ -38,6 +38,5 @@ namespace DeliverySolutions.Web.InProcess.Specs
         {
             Assert.That(_content.IsHealthy, Is.True);
         }
-
     }
 }

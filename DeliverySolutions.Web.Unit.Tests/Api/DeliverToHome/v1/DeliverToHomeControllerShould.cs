@@ -17,6 +17,8 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
 
         private const string AssignmentId = "abc";
         private const int AddressId = 123;
+        private const int VariantId1 = 234;
+        private const int VariantId2 = 345;
 
         [SetUp]
         public void SetUp()
@@ -30,12 +32,14 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.DeliverToHome.v1
         [Test]
         public void Update_builder_with_bag_details()
         {
-            var deliverToHomeRequest = ADeliverToHomeRequest.WithAssignmentId(AssignmentId).WithAddressId(AddressId).Build();
+            var deliverToHomeRequest = ADeliverToHomeRequest.WithAssignmentId(AssignmentId).WithAddressId(AddressId).AddVariantId(VariantId1).AddVariantId(VariantId2).Build();
 
             _deliverToHomeController.Post(deliverToHomeRequest);
 
             _deliverToHomeResponseBuilder.Received().WithAssignmentId(AssignmentId);
             _deliverToHomeResponseBuilder.Received().WithAddressId(AddressId);
+            _deliverToHomeResponseBuilder.AddItem(VariantId1);
+            _deliverToHomeResponseBuilder.AddItem(VariantId2);
         }
 
 

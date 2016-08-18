@@ -9,6 +9,7 @@ namespace DeliverySolutions.Web.Api.DeliverToHome.v1
         private string _assignmentId;
         private int _deliveryAddressId;
         private readonly List<string> _solutions = new List<string>();
+        private readonly List<int> _variantIds = new List<int>();
 
         public void AddSolution(string solution)
         {
@@ -21,14 +22,11 @@ namespace DeliverySolutions.Web.Api.DeliverToHome.v1
             {
                 AssignmentId = _assignmentId,
                 DeliveryAddressId = _deliveryAddressId,
-                Items =
-                    new[]
-                    {
-                        new ResponseItem
-                        {
-                            DeliverySolutions = _solutions.Select(solution => new DeliverySolution()).ToArray()
-                        }
-                    }
+                Items = _variantIds.Select(variantId => new ResponseItem
+                {
+                    VariantId = variantId,
+                    DeliverySolutions = _solutions.Select(solution => new DeliverySolution()).ToArray()
+                }).ToArray()
             };
         }
 
@@ -40,6 +38,11 @@ namespace DeliverySolutions.Web.Api.DeliverToHome.v1
         public virtual void WithAddressId(int addressId)
         {
             _deliveryAddressId = addressId;
+        }
+
+        public void AddItem(int variantId)
+        {
+            _variantIds.Add(variantId);
         }
     }
 }

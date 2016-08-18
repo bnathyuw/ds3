@@ -10,6 +10,7 @@
     public class ResponseItem
     {
         public DeliverySolution[] DeliverySolutions { get; set; }
+        public int VariantId { get; set; }
     }
 
     public class DeliverySolution

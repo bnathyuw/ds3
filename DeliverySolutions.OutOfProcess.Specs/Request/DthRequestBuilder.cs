@@ -6,8 +6,8 @@ namespace DeliverySolutions.OutOfProcess.Specs.Request
     {
         private string _assignmentId = "Assignment ID";
         private string _region = "Region 1";
-        private List<Item> _items = new List<Item>();
-        private DeliveryDetailsBuilder _deliveryDetailsBuilder = DeliveryDetailsBuilder.ADeliveryDetails;
+        private readonly List<Item> _items = new List<Item>();
+        private readonly DeliveryDetailsBuilder _deliveryDetailsBuilder = DeliveryDetailsBuilder.ADeliveryDetails;
         public static DthRequestBuilder ADthRequest => new DthRequestBuilder();
 
         public DthRequest Build()
@@ -19,6 +19,12 @@ namespace DeliverySolutions.OutOfProcess.Specs.Request
                 Items = _items.ToArray(),
                 DeliveryDetails = _deliveryDetailsBuilder.Build()
             };
+        }
+
+        public DthRequestBuilder WithVariantId(int variantId)
+        {
+            _items.Add(new Item {VariantId = variantId});
+            return this;
         }
     }
 }

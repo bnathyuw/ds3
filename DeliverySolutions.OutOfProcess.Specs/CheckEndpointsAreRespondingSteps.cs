@@ -31,7 +31,7 @@ namespace DeliverySolutions.OutOfProcess.Specs
         [When(@"I request deliver-to-home solutions")]
         public void WhenIRequestDeliver_To_HomeSolutions()
         {
-            _api.Post(DthUrl, ADthRequest.Build()).Wait();
+            _api.Post(DthUrl, ADthRequest.WithVariantId(123).Build()).Wait();
         }
 
         [Then(@"I should receive delivery-to-home solutions")]
