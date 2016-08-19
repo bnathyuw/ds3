@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace DeliverySolutions.Web.Integration.Tests.Infra
 {
     [TestFixture]
-    public class DeliverySolutionsShould
+    public class SqlDeliverToHomeSolutionsShould
     {
         [Test]
         public void Write_solutions_from_database_to_proposal()

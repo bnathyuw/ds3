@@ -4,7 +4,7 @@ using DeliverySolutions.Web.Domain;
 
 namespace DeliverySolutions.Web.Api.DeliverToHome.v1
 {
-    public class DeliverToHomeResponseBuilder : DeliverToHomeProposal
+    public class ResponseBuilder : DeliverToHomeProposal
     {
         private string _assignmentId;
         private int _deliveryAddressId;
@@ -16,9 +16,9 @@ namespace DeliverySolutions.Web.Api.DeliverToHome.v1
             _solutions.Add(solution);
         }
 
-        public virtual DeliverToHomeResponse Build()
+        public virtual Response Build()
         {
-            return new DeliverToHomeResponse
+            return new Response
             {
                 AssignmentId = _assignmentId,
                 DeliveryAddressId = _deliveryAddressId,
@@ -30,11 +30,11 @@ namespace DeliverySolutions.Web.Api.DeliverToHome.v1
             };
         }
 
-        public virtual void WithRequest(DeliverToHomeRequest deliverToHomeRequest)
+        public virtual void WithRequest(Request request)
         {
-            _assignmentId = deliverToHomeRequest.AssignmentId;
-            _deliveryAddressId = deliverToHomeRequest.DeliveryDetails.AddressId;
-            _variantIds.AddRange(deliverToHomeRequest.Items.Select(item => item.VariantId));
+            _assignmentId = request.AssignmentId;
+            _deliveryAddressId = request.DeliveryDetails.AddressId;
+            _variantIds.AddRange(request.Items.Select(item => item.VariantId));
         }
     }
 }

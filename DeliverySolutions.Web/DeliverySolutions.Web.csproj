@@ -118,13 +118,13 @@
   <ItemGroup>
     <Compile Include="Api\HealthCheck\v1\Check.cs" />
     <Compile Include="Api\DeliverToHome\v1\DeliverToHomeController.cs" />
-    <Compile Include="Api\DeliverToHome\v1\DeliverToHomeRequest.cs" />
-    <Compile Include="Api\DeliverToHome\v1\DeliverToHomeResponse.cs" />
-    <Compile Include="Api\DeliverToHome\v1\DeliverToHomeResponseBuilder.cs" />
-    <Compile Include="Api\HealthCheck\v1\HealthResponse.cs" />
+    <Compile Include="Api\DeliverToHome\v1\Request.cs" />
+    <Compile Include="Api\DeliverToHome\v1\Response.cs" />
+    <Compile Include="Api\DeliverToHome\v1\ResponseBuilder.cs" />
+    <Compile Include="Api\HealthCheck\v1\Response.cs" />
     <Compile Include="Api\HealthCheck\v1\HealthcheckController.cs" />
-    <Compile Include="Api\HealthCheck\v1\HealthResponseBuilder.cs" />
-    <Compile Include="Domain\DeliverySolutionFinder.cs" />
+    <Compile Include="Api\HealthCheck\v1\ResponseBuilder.cs" />
+    <Compile Include="Domain\DeliverTohomeSolutionFinder.cs" />
     <Compile Include="Domain\HealthChecker.cs" />
     <Compile Include="Infra\ThisService.cs" />
     <Compile Include="Infra\SqlDatabase.cs" />

@@ -6,18 +6,18 @@ using NUnit.Framework;
 namespace DeliverySolutions.Web.Unit.Tests.Api.Healthcheck.v1
 {
     [TestFixture]
-    public class HealthcheckControllerShould
+    public class ControllerShould
     {
         private HealthcheckController _healthcheckController;
         private HealthChecker _healthChecker;
-        private HealthResponseBuilder _healthResponseBuilder;
+        private ResponseBuilder _responseBuilder;
 
         [SetUp]
         public void SetUp()
         {
             _healthChecker = Substitute.For<HealthChecker>(null, null);
-            _healthResponseBuilder = Substitute.For<HealthResponseBuilder>();
-            _healthcheckController = new HealthcheckController(_healthChecker, _healthResponseBuilder);
+            _responseBuilder = Substitute.For<ResponseBuilder>();
+            _healthcheckController = new HealthcheckController(_healthChecker, _responseBuilder);
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Api.Healthcheck.v1
         {
             _healthcheckController.Get();
 
-            _healthChecker.Received().WriteHealthTo(_healthResponseBuilder);
+            _healthChecker.Received().WriteHealthTo(_responseBuilder);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
     [TestFixture]
     public class DeliverySolutionFinderShould
     {
-        private DeliverySolutionFinder _deliverySolutionFinder;
+        private DeliverToHomeSolutionFinder _deliverToHomeSolutionFinder;
         private DeliverToHomeProposal _deliverToHomeProposal;
         private DeliverToHomeSolutions _deliverToHomeSolutions;
 
@@ -16,9 +16,9 @@ namespace DeliverySolutions.Web.Unit.Tests.Domain
         {
             _deliverToHomeProposal = Substitute.For<DeliverToHomeProposal>();
             _deliverToHomeSolutions = Substitute.For<Web.Infra.SqlDeliverToHomeSolutions>();
-            _deliverySolutionFinder = new DeliverySolutionFinder(_deliverToHomeSolutions);
+            _deliverToHomeSolutionFinder = new DeliverToHomeSolutionFinder(_deliverToHomeSolutions);
 
-            _deliverySolutionFinder.WriteDeliverToHomeSolutionsTo(_deliverToHomeProposal);
+            _deliverToHomeSolutionFinder.WriteDeliverToHomeSolutionsTo(_deliverToHomeProposal);
         }
 
         [Test]

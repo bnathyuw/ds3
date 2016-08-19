@@ -1,6 +1,6 @@
 ﻿namespace DeliverySolutions.Web.Api.DeliverToHome.v1
 {
-    public class DeliverToHomeResponse
+    public class Response
     {
         public string AssignmentId { get; set; }
         public int DeliveryAddressId { get; set; }

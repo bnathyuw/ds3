@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using DeliverySolutions.Web.Api.DeliverToHome.v1;
 using DeliverySolutions.Web.Api.HealthCheck.v1;
 using DeliverySolutions.Web.Wiring;
 using NUnit.Framework;
@@ -29,8 +28,8 @@ namespace DeliverySolutions.Web.Unit.Tests.Infra
         [Test]
         public void Resolve_deliver_to_home_controller()
         {
-            Assert.That(_dependencyResolver.GetService(typeof(DeliverToHomeController)), Is.TypeOf<DeliverToHomeController>());
-            Assert.That(_dependencyResolver.GetServices(typeof(DeliverToHomeController)).First(), Is.TypeOf<DeliverToHomeController>());
+            Assert.That(_dependencyResolver.GetService(typeof(Web.Api.DeliverToHome.v1.DeliverToHomeController)), Is.TypeOf<Web.Api.DeliverToHome.v1.DeliverToHomeController>());
+            Assert.That(_dependencyResolver.GetServices(typeof(Web.Api.DeliverToHome.v1.DeliverToHomeController)).First(), Is.TypeOf<Web.Api.DeliverToHome.v1.DeliverToHomeController>());
         }
 
         [Test]

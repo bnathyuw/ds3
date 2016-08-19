@@ -16,7 +16,7 @@ namespace DeliverySolutions.Web.InProcess.Specs
         private const int VariantId1 = 345;
         private const int VariantId2 = 456;
         private Item[] _items;
-        private DeliverToHomeResponse _response;
+        private Response _response;
 
         [Given(@"I have two items in my bag")]
         public void GivenIHaveTwoItemsInMyBag()
@@ -27,8 +27,8 @@ namespace DeliverySolutions.Web.InProcess.Specs
         [When(@"I look at my shipping methods")]
         public void WhenILookAtMyShippingMethods()
         {
-            var deliverToHomeController = new DeliverToHomeController(new DeliverToHomeResponseBuilder(), new DeliverySolutionFinder(new SqlDeliverToHomeSolutions()));
-            var result = (OkNegotiatedContentResult<DeliverToHomeResponse>)deliverToHomeController.Post(new DeliverToHomeRequest {AssignmentId = AssignmentId, DeliveryDetails = new DeliveryDetails {AddressId = AddressId}, Items = _items });
+            var deliverToHomeController = new DeliverToHomeController(new ResponseBuilder(), new DeliverToHomeSolutionFinder(new SqlDeliverToHomeSolutions()));
+            var result = (OkNegotiatedContentResult<Response>)deliverToHomeController.Post(new Request {AssignmentId = AssignmentId, DeliveryDetails = new DeliveryDetails {AddressId = AddressId}, Items = _items });
             _response = result.Content;
         }
 

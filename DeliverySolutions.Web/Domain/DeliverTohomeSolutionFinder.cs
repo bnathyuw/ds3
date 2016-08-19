@@ -10,11 +10,11 @@
         void WriteTo(DeliverToHomeProposal deliverToHomeProposal);
     }
 
-    public class DeliverySolutionFinder
+    public class DeliverToHomeSolutionFinder
     {
         private readonly DeliverToHomeSolutions _deliverToHomeSolutions;
 
-        public DeliverySolutionFinder(DeliverToHomeSolutions deliverToHomeSolutions)
+        public DeliverToHomeSolutionFinder(DeliverToHomeSolutions deliverToHomeSolutions)
         {
             _deliverToHomeSolutions = deliverToHomeSolutions;
         }

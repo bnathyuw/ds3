@@ -6,19 +6,19 @@ namespace DeliverySolutions.Web.Api.HealthCheck.v1
     public class HealthcheckController : ApiController
     {
         private readonly HealthChecker _healthChecker;
-        private readonly HealthResponseBuilder _healthResponseBuilder;
+        private readonly ResponseBuilder _responseBuilder;
 
-        public HealthcheckController(HealthChecker healthChecker, HealthResponseBuilder healthResponseBuilder)
+        public HealthcheckController(HealthChecker healthChecker, ResponseBuilder responseBuilder)
         {
             _healthChecker = healthChecker;
-            _healthResponseBuilder = healthResponseBuilder;
+            _responseBuilder = responseBuilder;
         }
 
         [HttpGet, Route("v1/healthcheck")]
         public IHttpActionResult Get()
         {
-            _healthChecker.WriteHealthTo(_healthResponseBuilder);
-            return Ok(_healthResponseBuilder.Build());
+            _healthChecker.WriteHealthTo(_responseBuilder);
+            return Ok(_responseBuilder.Build());
         }
     }
 }
